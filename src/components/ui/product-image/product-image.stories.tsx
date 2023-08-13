@@ -15,6 +15,7 @@ export default meta;
 export const PlaceholderImage: ComponentStory<typeof ProductImage> = (args: Props) => <ProductImage {...args} />;
 PlaceholderImage.args = {
 	className: '',
+	dynamic: true,
 };
 
 export const Image: ComponentStory<typeof ProductImage> = (args: Props) => <ProductImage {...args} />;
@@ -22,6 +23,7 @@ Image.args = {
 	className: '',
 	src: 'nitse.png',
 	alt: 'Ф. Ницше — Так говорил заратустра',
+	dynamic: true,
 };
 
 export const ImageLarge: ComponentStory<typeof ProductImage> = (args: Props) => <ProductImage {...args} />;
@@ -30,4 +32,5 @@ ImageLarge.args = {
 	src: 'nitse.png',
 	alt: 'Ф. Ницше — Так говорил заратустра',
 	isLarge: true,
+	dynamic: true,
 };
