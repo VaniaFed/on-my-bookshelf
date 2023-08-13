@@ -1,0 +1,26 @@
+@import 'utils/variables';
+@import 'utils/media';
+
+.box-container {
+	max-width: calc($container-width-desktop + 20px * 2);
+	width: 100%;
+	padding: 0 20px;
+	margin: 0 auto;
+
+	@include media-laptop {
+		max-width: calc($container-width-laptop + 20px * 2);
+	}
+
+	@include media-tablet {
+		max-width: none;
+		padding: 0 21px;
+	}
+}
+
+.container_size_1168 {
+	max-width: calc($container-width-desktop + 20px * 2 - 2px);
+
+	@include media-laptop {
+		max-width: calc($container-width-laptop + 20px * 2 - 2px);
+	}
+}

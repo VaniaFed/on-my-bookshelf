@@ -1,0 +1,72 @@
+@import 'utils/variables';
+@import 'utils/media';
+
+@mixin h3 {
+	font-size: 35px;
+	font-weight: 500;
+	line-height: 42.7px;
+
+	@include media-mobile {
+		font-size: 23px;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		line-height: 27.6px;
+	}
+}
+
+.h3 {
+	@include h3;
+}
+
+@mixin h2 {
+	font-size: 59px;
+	font-weight: 700;
+	line-height: 73.16px;
+
+	@include media-tablet {
+		font-size: 48px;
+		letter-spacing: 0.01em;
+		line-height: 56px;
+	}
+
+	@media (max-width: 482px) {
+		font-size: 40px;
+	}
+
+	@include media-mobile {
+		font-size: 34px;
+		letter-spacing: 0.02em;
+		line-height: 38.08px;
+	}
+
+	@include media-mobile-sm {
+		font-size: 24px;
+		letter-spacing: -0.01em;
+		line-height: 28.08px;
+	}
+}
+
+.h2 {
+	@include h2;
+}
+
+@mixin h1 {
+	font-size: 96px;
+	font-weight: 700;
+	line-height: 104.64px;
+	letter-spacing: 0.02em;
+
+	@include media-tablet {
+		@include h2;
+	}
+
+	@include media-mobile {
+		font-size: 34px;
+		line-height: 38.08px;
+		letter-spacing: 0.02em;
+	}
+}
+
+.h1 {
+	@include h1;
+}

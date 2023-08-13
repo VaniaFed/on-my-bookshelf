@@ -1,0 +1,20 @@
+@import 'utils/variables';
+@import 'utils/media';
+
+.logo {
+	display: flex;
+	width: 42px;
+	fill: $color-blue-300;
+
+	@include media-tablet {
+		width: 36px;
+	}
+}
+
+.logo__img {
+	width: 181.84px;
+
+	@include media-tablet {
+		width: 133px;
+	}
+}

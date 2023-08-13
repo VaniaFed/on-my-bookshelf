@@ -1,0 +1,169 @@
+@import 'components/ui/heading/heading.module';
+@import 'components/ui/paragraph/paragraph.module';
+@import 'utils/variables';
+@import 'utils/media';
+
+.link {
+	display: inline-block;
+	text-decoration: none;
+	cursor: pointer;
+
+	@include media-mobile {
+		word-wrap: break-word;
+	}
+}
+
+.link_level_h1 {
+	@include h1;
+
+	&::after {
+		height: 6px;
+	}
+}
+
+.link_level_h2 {
+	@include h2;
+
+	&::after {
+		height: 4px;
+	}
+}
+
+.link_level_h3 {
+	@include h3;
+
+	&::after {
+		height: 2.5px;
+	}
+}
+
+.link_level_p-big {
+	@include paragraph;
+	@include paragraph_size_big;
+
+	&::after {
+		height: 2px;
+	}
+}
+
+.link_level_p-normal {
+	@include paragraph;
+
+	&::after {
+		height: 1px;
+	}
+}
+
+.link_level_p-small {
+	@include paragraph;
+	@include paragraph_size_small;
+
+	&::after {
+		height: 1px;
+	}
+}
+
+.link_color_white {
+	color: $color-white;
+	fill: $color-white;
+
+	&:active {
+		color: $color-blue-200;
+	}
+
+	&::after {
+		background: none;
+	}
+
+	&:hover::after {
+		background: $color-white;
+	}
+
+	&:active::after {
+		background: $color-blue-200;
+	}
+}
+
+.link_color_black {
+	color: $color-black;
+	fill: $color-black;
+
+	&:active {
+		color: $color-green-400;
+	}
+
+	&::after {
+		background: none;
+	}
+
+	&:hover::after {
+		background: $color-black;
+	}
+
+	&:active::after {
+		background: $color-green-400;
+	}
+}
+
+.link_underline {
+	&::after {
+		content: '';
+		display: block;
+		width: 100%;
+	}
+}
+
+@mixin link_icon {
+	position: relative;
+	margin-left: 36px;
+
+	@include media-mobile {
+		margin-left: 25px;
+	}
+
+	&::before {
+		position: absolute;
+		left: -36px;
+
+		@include media-mobile {
+			left: -25px;
+		}
+	}
+}
+
+.link_vk {
+	@include link_icon;
+
+	&::before {
+		content: url('static/vk.svg');
+
+		@include media-mobile {
+			content: url('static/vk_mob.svg');
+			left: -25px;
+		}
+	}
+}
+
+.link_inst {
+	@include link_icon;
+
+	&::before {
+		content: url('static/inst.svg');
+
+		@include media-mobile {
+			content: url('static/inst_mob.svg');
+		}
+	}
+}
+
+.link_fb {
+	@include link_icon;
+
+	&::before {
+		content: url('static/fb.svg');
+
+		@include media-mobile {
+			content: url('static/fb_mob.svg');
+		}
+	}
+}

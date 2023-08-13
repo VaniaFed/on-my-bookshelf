@@ -1,0 +1,12 @@
+@import 'utils/variables';
+@import 'utils/media';
+
+.main-layout {
+	display: flex;
+	flex-direction: column;
+	row-gap: 135px;
+
+	@include media-mobile {
+		row-gap: 75px;
+	}
+}

@@ -1,0 +1,47 @@
+@import 'utils/variables';
+@import 'utils/media';
+
+@mixin paragraph {
+	font: normal 20px Roboto, Arial, sans-serif;
+	font-weight: 400;
+	line-height: 28.4px;
+
+	@include media-mobile {
+		font-size: 16px;
+		line-height: 22.72px;
+	}
+}
+
+.paragraph {
+	@include paragraph;
+}
+
+@mixin paragraph_size_small {
+	font-size: 17px;
+	line-height: 24.14px;
+	letter-spacing: -0.01em;
+
+	@include media-mobile {
+		font-size: 16px;
+		line-height: 22.72px;
+	}
+}
+
+.paragraph_size_small {
+	@include paragraph_size_small;
+}
+
+@mixin paragraph_size_big {
+	font-size: 23px;
+	font-weight: 700;
+	line-height: 28.06px;
+
+	@include media-mobile {
+		font-size: 16px;
+		line-height: 22.72px;
+	}
+}
+
+.paragraph_size_big {
+	@include paragraph_size_big;
+}

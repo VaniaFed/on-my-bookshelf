@@ -1,0 +1,83 @@
+@import 'components/ui/paragraph/paragraph.module';
+@import 'utils/variables';
+@import 'utils/media';
+
+.button {
+	@include paragraph;
+	padding: 15px 72.5px;
+	background: $color-green-400;
+	color: $color-white;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+
+	&:hover {
+		background: $color-green-300;
+	}
+
+	&:active {
+		background: $color-green-200;
+	}
+
+	@include media-mobile {
+		padding: 12px 30px;
+	}
+}
+
+.button_more {
+	@include paragraph_size_big;
+	display: flex;
+	align-items: center;
+	column-gap: 15px;
+	padding: 7px 20px;
+	background: none;
+	border-radius: 50px;
+
+	&:hover {
+		background: $color-green-400;
+	}
+
+	&:active {
+		background: $color-orange-200;
+	}
+
+	&::after {
+		content: '';
+		display: inline-flex;
+		align-items: center;
+		width: 24px;
+		height: 26px;
+		background: url('static/arrow bt.svg');
+	}
+}
+
+.button_secondary {
+	background: $color-green-100;
+	color: $color-green-400;
+
+	&:hover {
+		background: $color-gray-100;
+	}
+
+	&:active {
+		background: $color-gray-200;
+	}
+}
+
+.button_small {
+	@include paragraph_size_small;
+	padding: 5px 20px;
+	background-color: $color-white;
+	color: $color-black;
+	border-radius: 10px;
+
+	&:hover {
+		background: $color-blue-300;
+		color: $color-white;
+	}
+
+	&:active {
+		background: $color-blue-200;
+		color: $color-white;
+	}
+}

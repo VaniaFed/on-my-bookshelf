@@ -1,0 +1,27 @@
+@import 'utils/variables';
+@import 'utils/media';
+
+.footer {
+	background: $color-blue-200;
+}
+
+.footer__socials {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 30px 1px;
+
+	@include media-tablet {
+		flex-direction: column;
+		gap: 6px;
+		height: auto;
+	}
+
+	@include media-mobile {
+		padding: 21px 1px;
+	}
+}
+
+.footer__paragraph {
+	color: $color-white;
+}

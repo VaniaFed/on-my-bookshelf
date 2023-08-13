@@ -1,0 +1,16 @@
+@import 'reset-css';
+@import 'utils/variables';
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+	font: normal 20px Roboto, Arial, sans-serif;
+}
+
+.hidden {
+	display: none;
+}

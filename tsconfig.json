@@ -1,0 +1,26 @@
+{
+	"compilerOptions": {
+		"outDir": "./dist",
+		"target": "es5",
+		"module": "es6",
+		"jsx": "react",
+		"noImplicitAny": true,
+		"allowSyntheticDefaultImports": true,
+		"baseUrl": "./src/",
+		"moduleResolution": "Node",
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"skipLibCheck": true,
+		"paths": {
+			"components": ["./src/components/"],
+			"ui": ["./src/components/ui/"],
+			"features": ["./src/features/"],
+			"services": ["./src/services/"],
+			"utils": ["./src/utils/"],
+			"static": ["./src/static/"],
+			"types/": ["./src/types/"]
+		}
+	},
+	"exclude": ["node_modules", "**/node_modules/*", ".stylelintrc", "*.stories.ts?"],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "./declaration.d.ts", "./custom.d.ts"]
+}
