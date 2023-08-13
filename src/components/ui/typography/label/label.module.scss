@@ -1,0 +1,16 @@
+@import 'utils/variables';
+@import 'utils/media';
+
+.label {
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.label_required {
+	&::after {
+		content: url('/src/static/required.svg');
+		position: relative;
+		top: -12px;
+		right: -4px;
+	}
+}
