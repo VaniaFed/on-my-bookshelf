@@ -42,6 +42,13 @@ module.exports = {
 			template: path.resolve(__dirname, '../', 'src/', 'index.html'),
 			filename: 'index.html',
 		}),
+		new HtmlWebpackPlugin({
+			template: path.resolve(__dirname, '../', 'src/', 'index.html'),
+			filename: 'index.html',
+		}),
+		new webpack.DefinePlugin({
+			'process.env.STATIC_URL': JSON.stringify(path.resolve(__dirname, '..', 'src', 'static')),
+		}),
 	],
 	mode: 'development',
 };
