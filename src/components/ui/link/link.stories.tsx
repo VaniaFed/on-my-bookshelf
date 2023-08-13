@@ -46,3 +46,6 @@ export const BlackLink: ComponentStory<typeof Link> = (args: Props) => (
 		Black H1 Link
 	</Link>
 );
+
+export const IconLinkGo: ComponentStory<typeof Link> = (args: Props) => <Link href="#" iconType="go" />;
+export const IconLinkEdit: ComponentStory<typeof Link> = (args: Props) => <Link href="#" iconType="edit" />;

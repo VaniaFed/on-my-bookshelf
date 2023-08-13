@@ -12,12 +12,12 @@ export const Link = forwardRef<HTMLAnchorElement, Props>(
 	(
 		{
 			isExternal = false,
-			smooth = false,
 			children,
 			href = '#',
 			level = 'paragraph',
 			color = 'black',
 			underline = true,
+			iconType,
 			className,
 			...rest
 		},
@@ -27,6 +27,7 @@ export const Link = forwardRef<HTMLAnchorElement, Props>(
 			'link',
 			`link_level_${level}`,
 			color && [`link_color_${color}`],
+			iconType && [`link_icon_${iconType}`],
 			underline && 'link_underline',
 			className
 		);

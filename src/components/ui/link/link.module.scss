@@ -76,15 +76,15 @@
 	}
 }
 
-.link_go {
+.link_icon_go {
 	@include link_icon;
 
 	&::before {
-		content: url('static/shevron-right.svg');
+		content: url('static/chevron-right.svg');
 	}
 }
 
-.link_edit {
+.link_icon_edit {
 	@include link_icon;
 
 	&::before {
