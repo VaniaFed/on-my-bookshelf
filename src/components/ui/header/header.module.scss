@@ -1,6 +1,10 @@
 @import 'utils/variables';
 @import 'utils/media';
 
+.header {
+	border-bottom: 1px solid $color-header-border;
+}
+
 .header__nav {
 	display: flex;
 	align-items: center;

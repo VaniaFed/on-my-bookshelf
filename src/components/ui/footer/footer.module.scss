@@ -2,10 +2,11 @@
 @import 'utils/media';
 
 .footer {
-	background: $color-blue-200;
+	background: $color-white;
+	border-top: 1px solid $color-footer-border;
 }
 
-.footer__socials {
+.footer__inner {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -20,8 +21,4 @@
 	@include media-mobile {
 		padding: 21px 1px;
 	}
-}
-
-.footer__paragraph {
-	color: $color-white;
 }

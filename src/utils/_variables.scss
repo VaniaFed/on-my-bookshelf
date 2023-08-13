@@ -3,8 +3,21 @@ $container-width-laptop: 720px;
 
 $color-white: #fff;
 $color-gray: #828282;
+$color-gray-hover: #706f6f;
+$color-gray-active: #575757;
 $color-black: #303030;
 
-$color-green: #32D172;
-$color-orange: #CED132;
-$color-red: #D13232;
+$color-green: #32d172;
+$color-green-hover: #2aad5f;
+$color-green-active: #218d4c;
+$color-orange: #ced132;
+$color-orange-hover: #adaf29;
+$color-orange-active: #7e801e;
+$color-red: #d13232;
+$color-red-hover: #8f2424;
+$color-red-active: #691a1a;
+
+$color-input-border: #d7d7d7;
+$color-header-border: #d7d7d7;
+$color-footer-border: #d7d7d7;
+$color-pic-border: #f0f0f0;

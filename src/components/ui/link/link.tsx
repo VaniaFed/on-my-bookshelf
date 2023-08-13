@@ -15,10 +15,9 @@ export const Link = forwardRef<HTMLAnchorElement, Props>(
 			smooth = false,
 			children,
 			href = '#',
-			level = 'p-normal',
+			level = 'paragraph',
 			color = 'black',
 			underline = true,
-			iconType,
 			className,
 			...rest
 		},
@@ -29,7 +28,6 @@ export const Link = forwardRef<HTMLAnchorElement, Props>(
 			`link_level_${level}`,
 			color && [`link_color_${color}`],
 			underline && 'link_underline',
-			iconType && [`link_${iconType}`],
 			className
 		);
 		return (

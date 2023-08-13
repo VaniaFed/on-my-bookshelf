@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 
-import { Heading } from 'components/ui/heading';
-import { Paragraph } from 'components/ui/paragraph';
+import { Heading } from 'components/ui/typography/heading';
+import { Paragraph } from 'components/ui/typography/paragraph';
 
 import styles from './not-found.module.scss';
 

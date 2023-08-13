@@ -1,0 +1,10 @@
+@import 'utils/variables';
+@import 'utils/media';
+
+@mixin paragraph {
+	font-size: 16px;
+	line-height: 150%;
+}
+.paragraph {
+	@include paragraph;
+}

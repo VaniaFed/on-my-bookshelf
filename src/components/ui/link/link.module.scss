@@ -1,5 +1,5 @@
-@import 'components/ui/heading/heading.module';
-@import 'components/ui/paragraph/paragraph.module';
+@import 'components/ui/typography/heading/heading.module';
+@import 'components/ui/typography/paragraph/paragraph.module';
 @import 'utils/variables';
 @import 'utils/media';
 
@@ -29,58 +29,11 @@
 	}
 }
 
-.link_level_h3 {
-	@include h3;
-
-	&::after {
-		height: 2.5px;
-	}
-}
-
-.link_level_p-big {
-	@include paragraph;
-	@include paragraph_size_big;
-
-	&::after {
-		height: 2px;
-	}
-}
-
-.link_level_p-normal {
+.link_level_paragraph {
 	@include paragraph;
 
 	&::after {
 		height: 1px;
-	}
-}
-
-.link_level_p-small {
-	@include paragraph;
-	@include paragraph_size_small;
-
-	&::after {
-		height: 1px;
-	}
-}
-
-.link_color_white {
-	color: $color-white;
-	fill: $color-white;
-
-	&:active {
-		color: $color-blue-200;
-	}
-
-	&::after {
-		background: none;
-	}
-
-	&:hover::after {
-		background: $color-white;
-	}
-
-	&:active::after {
-		background: $color-blue-200;
 	}
 }
 
@@ -89,7 +42,7 @@
 	fill: $color-black;
 
 	&:active {
-		color: $color-green-400;
+		color: $color-green;
 	}
 
 	&::after {
@@ -97,19 +50,11 @@
 	}
 
 	&:hover::after {
-		background: $color-black;
+		background: $color-gray;
 	}
 
 	&:active::after {
-		background: $color-green-400;
-	}
-}
-
-.link_underline {
-	&::after {
-		content: '';
-		display: block;
-		width: 100%;
+		background: $color-green;
 	}
 }
 
@@ -131,39 +76,18 @@
 	}
 }
 
-.link_vk {
+.link_go {
 	@include link_icon;
 
 	&::before {
-		content: url('static/vk.svg');
-
-		@include media-mobile {
-			content: url('static/vk_mob.svg');
-			left: -25px;
-		}
+		content: url('static/shevron-right.svg');
 	}
 }
 
-.link_inst {
+.link_edit {
 	@include link_icon;
 
 	&::before {
-		content: url('static/inst.svg');
-
-		@include media-mobile {
-			content: url('static/inst_mob.svg');
-		}
-	}
-}
-
-.link_fb {
-	@include link_icon;
-
-	&::before {
-		content: url('static/fb.svg');
-
-		@include media-mobile {
-			content: url('static/fb_mob.svg');
-		}
+		content: url('static/edit.svg');
 	}
 }

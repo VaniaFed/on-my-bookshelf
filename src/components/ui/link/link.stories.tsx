@@ -27,26 +27,8 @@ export const H2: ComponentStory<typeof Link> = (args: Props) => (
 	</Link>
 );
 
-export const H3: ComponentStory<typeof Link> = (args: Props) => (
-	<Link href="#" level="h3">
-		H3 Link Level
-	</Link>
-);
-
-export const ParagraphBig: ComponentStory<typeof Link> = (args: Props) => (
-	<Link href="#" level="p-big">
-		Paragraph big Link Level
-	</Link>
-);
-
-export const ParagraphNormal: ComponentStory<typeof Link> = (args: Props) => (
-	<Link href="#" level="p-normal">
-		Paragraph big Link Level
-	</Link>
-);
-
-export const ParagraphSmall: ComponentStory<typeof Link> = (args: Props) => (
-	<Link href="#" level="p-small">
+export const Paragraph: ComponentStory<typeof Link> = (args: Props) => (
+	<Link href="#" level="paragraph">
 		Paragraph big Link Level
 	</Link>
 );
@@ -62,15 +44,5 @@ export const WhiteLink: ComponentStory<typeof Link> = (args: Props) => (
 export const BlackLink: ComponentStory<typeof Link> = (args: Props) => (
 	<Link href="#" level="h1" color="black">
 		Black H1 Link
-	</Link>
-);
-
-export const WithIconVK: ComponentStory<typeof Link> = (args: Props) => <Link iconType="vk" {...args} />;
-export const WithIconINST: ComponentStory<typeof Link> = (args: Props) => <Link iconType="inst" {...args} />;
-export const WithIconFB: ComponentStory<typeof Link> = (args: Props) => <Link iconType="fb" {...args} />;
-
-export const VKWithText: ComponentStory<typeof Link> = (args: Props) => (
-	<Link iconType="vk" {...args}>
-		VK
 	</Link>
 );
