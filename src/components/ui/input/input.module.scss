@@ -6,9 +6,8 @@
 .input {
 	@include paragraph;
 	width: 100%;
-	height: 60px;
 	padding: 20px;
-	border: 1px solid $color-gray-hover;
+	border: 1px solid $color-input-border;
 	border-radius: 10px;
 	background: $color-white;
 	appearance: none;
@@ -29,7 +28,7 @@
 	}
 
 	&_invalid:not(&:focus) {
-		border: 3px solid $color-red;
+		border: 2px solid $color-red;
 
 		&::placeholder {
 			color: $color-red;
