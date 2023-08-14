@@ -1,5 +1,5 @@
 export interface Props {
-	size?: '1' | '2';
-	children?: React.ReactNode;
+	children: React.ReactNode;
+	light?: boolean;
 	className?: string;
 }

@@ -1,0 +1,56 @@
+@import 'utils/variables';
+@import 'utils/media';
+
+.book-item {
+	display: flex;
+	align-items: stretch;
+
+	@include media-tablet {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__content {
+		display: flex;
+		flex: 1;
+		justify-content: space-between;
+		align-items: center;
+		padding: 36px;
+
+		@include media-tablet {
+			justify-content: start;
+			align-items: start;
+			flex-direction: column;
+			width: 100%;
+		}
+	}
+
+	&__subtitle {
+		margin-top: 12px;
+	}
+
+	&__links {
+		position: relative;
+		top: -18px;
+		display: none;
+		gap: 24px;
+
+		@include media-tablet {
+			display: flex;
+			margin-top: 36px;
+		}
+	}
+
+	&:hover &__links {
+		display: flex;
+	}
+
+	&:hover &__content {
+		background: linear-gradient(270deg, #eee 0.01%, rgba(250, 246, 246, 0) 79.08%);
+
+		@include media-tablet {
+			background: none;
+		}
+	}
+}
