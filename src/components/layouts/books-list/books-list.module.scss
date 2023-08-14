@@ -1,0 +1,8 @@
+@import 'utils/variables';
+@import 'utils/media';
+
+.books-list {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}

@@ -35,6 +35,7 @@
 		top: -18px;
 		display: none;
 		gap: 24px;
+		padding-left: 12px;
 
 		@include media-tablet {
 			display: flex;

@@ -1,0 +1,14 @@
+@import 'utils/variables';
+@import 'utils/media';
+
+.book-list-page {
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+	}
+
+	&__button {
+		width: fit-content;
+	}
+}
