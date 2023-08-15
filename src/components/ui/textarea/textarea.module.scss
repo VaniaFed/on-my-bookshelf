@@ -1,0 +1,22 @@
+@import 'utils/variables';
+@import 'utils/media';
+@import 'components/ui/typography/paragraph/paragraph.module';
+
+.textarea {
+	@include paragraph;
+	font-family: Inter, Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	display: flex;
+	width: 100%;
+	min-height: 152px;
+	padding: 20px;
+	border: none;
+	border-radius: 10px;
+	background-color: $color-input-background;
+	appearance: none;
+	resize: none;
+
+	&:focus {
+		outline: none;
+	}
+}

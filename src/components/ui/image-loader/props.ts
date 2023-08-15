@@ -1,4 +1,9 @@
-export interface Props {
-	onFileChange: (file: File) => void;
+import type { InputHTMLAttributes } from 'react';
+
+export interface Props extends InputHTMLAttributes<HTMLInputElement> {
+	id: string;
+	label?: string;
+	errMessage?: string;
+	onImageChange: (imgURL: string) => void;
 	className?: string;
 }

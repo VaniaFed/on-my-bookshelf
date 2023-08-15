@@ -14,7 +14,7 @@
 		"paths": {
 			"components": ["./src/components/"],
 			"ui": ["./src/components/ui/"],
-			"features": ["./src/features/"],
+			"hooks": ["./src/hooks/"],
 			"services": ["./src/services/"],
 			"utils": ["./src/utils/"],
 			"static": ["./src/static/"],

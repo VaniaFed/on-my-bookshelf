@@ -1,10 +1,11 @@
 /* stylelint-disable no-descending-specificity */
-@import 'components/ui/typography/paragraph/paragraph.module';
 @import 'utils/variables';
 @import 'utils/media';
+@import 'components/ui/typography/paragraph/paragraph.module';
 
 .input {
 	@include paragraph;
+	font-size: 20px;
 	width: 100%;
 	padding: 20px;
 	border: 1px solid $color-input-border;

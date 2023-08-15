@@ -1,6 +1,6 @@
-@import 'components/ui/typography/paragraph/paragraph.module';
 @import 'utils/variables';
 @import 'utils/media';
+@import 'components/ui/typography/paragraph/paragraph.module';
 
 .button {
 	@include paragraph;
