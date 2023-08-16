@@ -72,7 +72,7 @@ export const ModalEdit: FC<Props> = ({ bookId, onClose, className }) => {
 					<ImageLoader
 						id={fieldsData.cover.id}
 						onImageChange={handleImageChange}
-						image={fieldsData.cover.value as string}
+						defaultImage={fieldsData.cover.value as string}
 						{...register('cover')}
 					/>
 				</Field>
