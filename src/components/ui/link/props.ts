@@ -4,7 +4,7 @@ export interface Props extends LinkHTMLAttributes<HTMLAnchorElement> {
 	isExternal?: boolean;
 	children?: React.ReactNode;
 	level?: 'h1' | 'h2' | 'paragraph';
-	color?: 'black' | 'white';
+	color?: 'black' | 'white' | 'green';
 	underline?: boolean;
 	iconType?: 'go' | 'edit';
 }

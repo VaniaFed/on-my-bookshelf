@@ -2,5 +2,26 @@
 @import 'utils/media';
 
 .book-page {
-	border: none;
+	max-width: 650px;
+
+	&__image {
+		margin-bottom: 48px;
+	}
+
+	&__title {
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+
+	&__author {
+		margin-top: 12px;
+	}
+
+	&__description {
+		margin-top: 24px;
+	}
+
+	&__home-link {
+		margin-top: 24px;
+	}
 }

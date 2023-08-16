@@ -58,6 +58,31 @@
 	}
 }
 
+.link_color_green {
+	color: $color-green;
+	fill: $color-black;
+
+	&:hover {
+		color: $color-green-hover;
+	}
+
+	&:active {
+		color: $color-green-active;
+	}
+
+	&::after {
+		background: none;
+	}
+
+	&:hover::after {
+		color: $color-green-hover;
+	}
+
+	&:active::after {
+		color: $color-green-active;
+	}
+}
+
 .link_underline {
 	position: relative;
 	&::after {

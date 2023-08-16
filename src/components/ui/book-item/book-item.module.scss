@@ -26,6 +26,13 @@
 		}
 	}
 
+	&__heading {
+		padding-right: 60px;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		max-width: 500px;
+	}
+
 	&__subtitle {
 		margin-top: 12px;
 	}

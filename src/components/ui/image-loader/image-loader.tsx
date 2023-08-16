@@ -35,7 +35,6 @@ export const ImageLoader = forwardRef<HTMLInputElement, Props>(
 				{fileDataURL && (
 					<ProductImage
 						src={fileDataURL}
-						dynamic={fileDataURL?.length === 0}
 						alt={image ? image.name : ''}
 						className={cx('image-loader__preview')}
 					/>

@@ -16,7 +16,7 @@ export const Footer: FC<Props> = ({ className }) => {
 		<footer className={cx('footer', className)}>
 			<BoxContainer>
 				<div className={cx('footer__inner')}>
-					<Logo href="#" />
+					<Logo href="/#" />
 				</div>
 			</BoxContainer>
 		</footer>

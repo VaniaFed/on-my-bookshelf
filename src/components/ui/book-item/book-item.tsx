@@ -23,11 +23,13 @@ export const BookItem: FC<Props> = ({ id, title, author, src = '', alt, classNam
 
 	return (
 		<div className={cx('book-item', className)}>
-			<ProductImage src={src} dynamic={!src.length} alt={alt} className={cx('book-item__image')} />
+			<ProductImage src={src} alt={alt} className={cx('book-item__image')} />
 			<div className={cx('book-item__content')}>
 				<div>
 					<Link href={`/books/${id}`} level="h2">
-						<Heading size="2">{title}</Heading>
+						<Heading size="2" className={cx('book-item__heading')}>
+							{title}
+						</Heading>
 					</Link>
 					<Subtitle className={cx('book-item__subtitle')}>{author}</Subtitle>
 				</div>

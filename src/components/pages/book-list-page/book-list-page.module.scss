@@ -9,6 +9,11 @@
 		gap: 30px;
 	}
 
+	&__button-group {
+		display: flex;
+		gap: 18px;
+	}
+
 	&__button {
 		width: fit-content;
 	}
