@@ -3,6 +3,9 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
+import { useAppDispatch } from 'reduxx/hooks';
+import { bookAdded } from 'reduxx/slices/book/slice';
+
 import type { FormState, SubmitHandler, UseFormRegister } from 'react-hook-form';
 
 const bookSchema = yup
@@ -27,11 +30,21 @@ interface UseAddBookForm {
 export function useAddBookForm(closeModal: () => void): UseAddBookForm {
 	const { register, handleSubmit, setValue, reset, formState, watch } = useForm<BookFields>({
 		resolver: yupResolver<BookFields>(bookSchema),
+		defaultValues: {
+			title: '',
+			author: '',
+			description: '',
+			cover: '',
+		},
 	});
 
+	const dispatch = useAppDispatch();
+	const addBook = (book: BookFields): void => {
+		dispatch(bookAdded(book));
+	};
+
 	const onSubmit: SubmitHandler<BookFields> = (data): void => {
-		console.log(data);
-		// TODO: redux dispatch
+		addBook(data);
 		closeModal();
 		resetForm();
 	};

@@ -15,6 +15,7 @@
 			"components": ["./src/components/"],
 			"ui": ["./src/components/ui/"],
 			"hooks": ["./src/hooks/"],
+			"reduxx": ["./src/reduxx/"],
 			"services": ["./src/services/"],
 			"utils": ["./src/utils/"],
 			"static": ["./src/static/"],

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 
+import { selectBooks } from 'reduxx/slices/book/slice';
+import { useAppSelector } from 'reduxx/hooks';
 import { BoxContainer } from 'components/layouts/box-container';
 import { BooksList } from 'components/layouts/books-list/books-list';
 import { ModalAdd } from 'components/layouts/modal/modal-add/modal-add';
@@ -10,45 +12,6 @@ import { Button } from 'components/ui/button';
 import styles from './book-list-page.module.scss';
 
 import type { FC } from 'react';
-
-export interface Book {
-	title: string;
-	author: string;
-	src: string;
-}
-
-const books: Book[] = [
-	{
-		title: 'так говорил заратустра lkdsfjdlk kldjkldjg lkjdlfkjdslk fjlksdfjlksdjflksdfdsklfjdsklf',
-		author: 'Ф. Ницше',
-		src: 'nitse.png',
-	},
-	{
-		title: 'так говорил заратустра',
-		author: 'Ф. Ницше',
-		src: 'nitse.png',
-	},
-	{
-		title: 'так говорил заратустра',
-		author: 'Ф. Ницше dsfjklds jlkdsjfkl sdjfklds jsdklfj lsdkjfklsdj kldsfjsdl',
-		src: 'nitse.png',
-	},
-	{
-		title: 'так говорил заратустра',
-		author: 'Ф. Ницше',
-		src: 'nitse.png',
-	},
-	{
-		title: 'так говорил заратустра',
-		author: 'Ф. Ницше',
-		src: 'nitse.png',
-	},
-	{
-		title: 'так говорил заратустра',
-		author: 'Ф. Ницше',
-		src: 'nitse.png',
-	},
-];
 
 const cx = classNames.bind(styles);
 
@@ -63,6 +26,8 @@ export const BookListPage: FC<unknown> = () => {
 	const hideModal = (): void => {
 		setModalShown(false);
 	};
+
+	const books = useAppSelector(selectBooks);
 
 	return (
 		<BoxContainer className={cx('book-list-page__content')}>

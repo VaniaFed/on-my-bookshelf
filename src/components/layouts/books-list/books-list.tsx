@@ -14,7 +14,7 @@ export const BooksList: FC<Props> = ({ books, className }) => {
 	return (
 		<div className={cx('books-list', className)}>
 			{books.map((book, key) => (
-				<BookItem title={book.title} author={book.author} src={book.src} key={key}></BookItem>
+				<BookItem title={book.title} author={book.author} src={book.cover} key={key}></BookItem>
 			))}
 		</div>
 	);

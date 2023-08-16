@@ -16,7 +16,7 @@ export const Link = forwardRef<HTMLAnchorElement, Props>(
 			href = '#',
 			level = 'paragraph',
 			color = 'black',
-			underline = true,
+			underline = false,
 			iconType,
 			className,
 			...rest

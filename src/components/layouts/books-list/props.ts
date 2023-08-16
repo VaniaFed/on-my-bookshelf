@@ -1,4 +1,4 @@
-import type { Book } from 'components/pages/book-list-page/book-list-page';
+import type { Book } from 'reduxx/slices/book/types';
 
 export interface Props {
 	books: Book[];
