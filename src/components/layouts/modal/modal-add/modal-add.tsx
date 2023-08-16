@@ -10,7 +10,7 @@ import { Heading } from 'components/ui/typography/heading';
 
 import { Modal } from '../modal';
 
-import { useAddBookForm } from './use-add-book-form';
+import { useBookForm } from './use-add-book-form';
 import styles from './modal-add.module.scss';
 
 import type { FC } from 'react';
@@ -19,13 +19,7 @@ import type { Props } from './props';
 const cx = classNames.bind(styles);
 
 export const ModalAdd: FC<Props> = ({ onClose, className }) => {
-	const {
-		register,
-		handleImageChange,
-		resetForm,
-		onFormSubmit,
-		formState: { errors },
-	} = useAddBookForm(onClose);
+	const { register, handleImageChange, resetForm, onFormSubmit, errors, fieldsData } = useBookForm(onClose);
 	const header = (
 		<>
 			<Heading size="2">Добавить книгу</Heading>
@@ -39,29 +33,6 @@ export const ModalAdd: FC<Props> = ({ onClose, className }) => {
 		</>
 	);
 
-	const fieldData = {
-		title: {
-			id: 'modal-field-title',
-			label: 'Название произведения',
-			errMessage: errors.title?.message,
-		},
-		author: {
-			id: 'modal-field-author',
-			label: 'Автор книги',
-			errMessage: errors.author?.message,
-		},
-		description: {
-			id: 'modal-field-description',
-			label: 'Описание книги',
-			errMessage: errors.description?.message,
-		},
-		cover: {
-			id: 'modal-field-cover',
-			label: 'Обложка',
-			errMessage: errors.cover?.message,
-		},
-	};
-
 	return (
 		<Modal
 			header={header}
@@ -74,31 +45,31 @@ export const ModalAdd: FC<Props> = ({ onClose, className }) => {
 			<form className={cx('modal-add__form')} id="add-book-form" onSubmit={onFormSubmit}>
 				<Field
 					required
-					id={fieldData.title.id}
-					label={fieldData.title.label}
-					errMessage={fieldData.title.errMessage}>
-					<Input id={fieldData.title.id} className={cx('modal-add__input')} {...register('title')} />
+					id={fieldsData.title.id}
+					label={fieldsData.title.label}
+					errMessage={fieldsData.title.errMessage}>
+					<Input id={fieldsData.title.id} className={cx('modal-add__input')} {...register('title')} />
 				</Field>
 				<Field
 					required
-					id={fieldData.author.id}
-					label={fieldData.author.label}
-					errMessage={fieldData.author.errMessage}>
-					<Input id={fieldData.author.id} className={cx('modal-add__input')} {...register('author')} />
+					id={fieldsData.author.id}
+					label={fieldsData.author.label}
+					errMessage={fieldsData.author.errMessage}>
+					<Input id={fieldsData.author.id} className={cx('modal-add__input')} {...register('author')} />
 				</Field>
 				<Field
 					required
-					id={fieldData.description.id}
-					label={fieldData.description.label}
-					errMessage={fieldData.description.errMessage}>
-					<Textarea id={fieldData.description.id} {...register('description')} />
+					id={fieldsData.description.id}
+					label={fieldsData.description.label}
+					errMessage={fieldsData.description.errMessage}>
+					<Textarea id={fieldsData.description.id} {...register('description')} />
 				</Field>
 				<Field
 					required
-					id={fieldData.cover.id}
-					label={fieldData.cover.label}
-					errMessage={fieldData.cover.errMessage}>
-					<ImageLoader id={fieldData.cover.id} onImageChange={handleImageChange} {...register('cover')} />
+					id={fieldsData.cover.id}
+					label={fieldsData.cover.label}
+					errMessage={fieldsData.cover.errMessage}>
+					<ImageLoader id={fieldsData.cover.id} onImageChange={handleImageChange} {...register('cover')} />
 				</Field>
 			</form>
 		</Modal>

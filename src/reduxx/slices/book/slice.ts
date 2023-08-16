@@ -1,36 +1,23 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-
-import { generateId } from 'utils/generate-id';
+import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 
 import type { RootState } from 'reduxx/store';
 import type { Book } from './types';
 
-const initialState: Book[] = [
-	{ title: 'Так говорил заратустра1 dslf l;sdfsd fjsdljflds jsdljf klsdjfdlsk jsdkljlk', author: 'Ф. Ницше' },
-];
+const booksAdapter = createEntityAdapter<Book>();
 
 const booksSlice = createSlice({
 	name: 'books',
-	initialState,
+	initialState: booksAdapter.getInitialState(),
 	reducers: {
-		bookAdded: {
-			reducer(state, action: PayloadAction<Book>) {
-				state.push(action.payload);
-			},
-			prepare(book: Book) {
-				return {
-					payload: {
-						id: generateId(),
-						...book,
-					},
-				};
-			},
-		},
+		addBook: booksAdapter.addOne,
 	},
 });
 
-export const { bookAdded } = booksSlice.actions;
+export const { addBook } = booksSlice.actions;
 
-export const selectBooks = (state: RootState): Book[] => state.books;
+const { selectAll, selectById } = booksAdapter.getSelectors((state: RootState) => state.books);
+
+export const selectAllBooks = selectAll;
+export const selectBookById = selectById;
 
 export default booksSlice.reducer;

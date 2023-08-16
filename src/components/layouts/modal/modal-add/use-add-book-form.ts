@@ -4,9 +4,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 import { useAppDispatch } from 'reduxx/hooks';
-import { bookAdded } from 'reduxx/slices/book/slice';
+import { addBook } from 'reduxx/slices/book/slice';
+import { generateId } from 'utils/generate-id';
 
-import type { FormState, SubmitHandler, UseFormRegister } from 'react-hook-form';
+import type { SubmitHandler, UseFormRegister, FieldErrors } from 'react-hook-form';
 
 const bookSchema = yup
 	.object({
@@ -19,16 +20,34 @@ const bookSchema = yup
 
 interface BookFields extends yup.InferType<typeof bookSchema> {}
 
-interface UseAddBookForm {
+interface FieldsData {
+	id: string;
+	label: string;
+	errMessage: string;
+}
+
+interface UseBookForm {
 	register: UseFormRegister<BookFields>;
 	resetForm: () => void;
 	handleImageChange: (imgURL: string) => void;
 	onFormSubmit: (e: React.FormEvent) => void;
-	formState: FormState<BookFields>;
+	errors: FieldErrors<BookFields>;
+	fieldsData: {
+		title: FieldsData;
+		author: FieldsData;
+		description: FieldsData;
+		cover: FieldsData;
+	};
 }
 
-export function useAddBookForm(closeModal: () => void): UseAddBookForm {
-	const { register, handleSubmit, setValue, reset, formState, watch } = useForm<BookFields>({
+export function useBookForm(closeModal: () => void, mode: 'add' | 'edit' = 'add', bookId?: string): UseBookForm {
+	const {
+		register,
+		handleSubmit,
+		setValue,
+		reset,
+		formState: { errors },
+	} = useForm<BookFields>({
 		resolver: yupResolver<BookFields>(bookSchema),
 		defaultValues: {
 			title: '',
@@ -39,12 +58,13 @@ export function useAddBookForm(closeModal: () => void): UseAddBookForm {
 	});
 
 	const dispatch = useAppDispatch();
-	const addBook = (book: BookFields): void => {
-		dispatch(bookAdded(book));
+
+	const addBookOnSubmit = (book: BookFields): void => {
+		dispatch(addBook({ ...book, id: generateId() }));
 	};
 
 	const onSubmit: SubmitHandler<BookFields> = (data): void => {
-		addBook(data);
+		addBookOnSubmit(data);
 		closeModal();
 		resetForm();
 	};
@@ -57,30 +77,45 @@ export function useAddBookForm(closeModal: () => void): UseAddBookForm {
 		reset();
 	};
 
-	const handleErrors = (err?: any): void => {
-		console.warn('errors:', err);
-	};
-
 	const onFormSubmit = (e: React.FormEvent): void => {
 		e.preventDefault();
-		handleSubmit(onSubmit, handleErrors)();
+		handleSubmit(onSubmit)();
 	};
 
-	useEffect(() => {
-		const subscription = watch((value, { name, type }) => {
-			console.log(value, name, type);
-		});
-
-		return () => {
-			subscription.unsubscribe();
-		};
-	}, [watch]);
+	const fieldsData: {
+		title: FieldsData;
+		author: FieldsData;
+		description: FieldsData;
+		cover: FieldsData;
+	} = {
+		title: {
+			id: 'modal-field-title',
+			label: 'Название произведения',
+			errMessage: errors.title?.message ?? '',
+		},
+		author: {
+			id: 'modal-field-author',
+			label: 'Автор книги',
+			errMessage: errors.author?.message ?? '',
+		},
+		description: {
+			id: 'modal-field-description',
+			label: 'Описание книги',
+			errMessage: errors.description?.message ?? '',
+		},
+		cover: {
+			id: 'modal-field-cover',
+			label: 'Обложка',
+			errMessage: errors.cover?.message ?? '',
+		},
+	};
 
 	return {
 		register,
 		handleImageChange,
 		resetForm,
 		onFormSubmit,
-		formState,
+		errors,
+		fieldsData,
 	};
 }
