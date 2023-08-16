@@ -7,10 +7,10 @@ import { Textarea } from 'components/ui/textarea';
 import { ImageLoader } from 'components/ui/image-loader/image-loader';
 import { Button } from 'components/ui/button';
 import { Heading } from 'components/ui/typography/heading';
+import { useBookForm } from 'hooks/use-book-form';
 
 import { Modal } from '../modal';
 
-import { useBookForm } from './use-add-book-form';
 import styles from './modal-add.module.scss';
 
 import type { FC } from 'react';
@@ -19,7 +19,7 @@ import type { Props } from './props';
 const cx = classNames.bind(styles);
 
 export const ModalAdd: FC<Props> = ({ onClose, className }) => {
-	const { register, handleImageChange, resetForm, onFormSubmit, errors, fieldsData } = useBookForm(onClose);
+	const { register, handleImageChange, resetForm, onFormSubmit, fieldsData } = useBookForm(onClose);
 	const header = (
 		<>
 			<Heading size="2">Добавить книгу</Heading>

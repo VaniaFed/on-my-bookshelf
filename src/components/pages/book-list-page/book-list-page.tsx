@@ -12,7 +12,6 @@ import { Button } from 'components/ui/button';
 import styles from './book-list-page.module.scss';
 
 import type { FC } from 'react';
-import store from 'reduxx/store';
 
 const cx = classNames.bind(styles);
 

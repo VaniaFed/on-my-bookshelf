@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -7,7 +6,7 @@ import { useAppDispatch } from 'reduxx/hooks';
 import { addBook } from 'reduxx/slices/book/slice';
 import { generateId } from 'utils/generate-id';
 
-import type { SubmitHandler, UseFormRegister, FieldErrors } from 'react-hook-form';
+import type { SubmitHandler, UseFormRegister } from 'react-hook-form';
 
 const bookSchema = yup
 	.object({
@@ -31,7 +30,6 @@ interface UseBookForm {
 	resetForm: () => void;
 	handleImageChange: (imgURL: string) => void;
 	onFormSubmit: (e: React.FormEvent) => void;
-	errors: FieldErrors<BookFields>;
 	fieldsData: {
 		title: FieldsData;
 		author: FieldsData;
@@ -115,7 +113,6 @@ export function useBookForm(closeModal: () => void, mode: 'add' | 'edit' = 'add'
 		handleImageChange,
 		resetForm,
 		onFormSubmit,
-		errors,
 		fieldsData,
 	};
 }
