@@ -11,11 +11,11 @@ import './index.scss';
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
-	<BrowserRouter>
-		<Provider store={store}>
-			<StrictMode>
+	<StrictMode>
+		<BrowserRouter>
+			<Provider store={store}>
 				<App />
-			</StrictMode>
-		</Provider>
-	</BrowserRouter>
+			</Provider>
+		</BrowserRouter>
+	</StrictMode>
 );

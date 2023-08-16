@@ -13,7 +13,7 @@ export const ProductImage: FC<Props> = ({ src, alt, dynamic = false, isLarge, cl
 	const finalImage = src || placeholderImage;
 	return (
 		<div className={cx('product-image', isLarge && 'product-image_large', className)}>
-			{finalImage && <img src={finalImage} alt={alt} />}
+			{finalImage && <img src={finalImage} alt={alt} className={cx('product-image__img')} />}
 		</div>
 	);
 };

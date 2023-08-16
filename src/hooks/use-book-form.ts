@@ -13,9 +13,9 @@ import type { Book } from 'reduxx/slices/book/types';
 
 const bookSchema = yup
 	.object({
-		title: yup.string().min(3).max(20).required(),
-		author: yup.string().min(3).max(20).required(),
-		description: yup.string().max(100),
+		title: yup.string().min(3).max(50).required(),
+		author: yup.string().min(3).max(50).required(),
+		description: yup.string().max(5000),
 		cover: yup.string(),
 	})
 	.required();
@@ -118,16 +118,19 @@ export function useBookForm(closeModal: () => void, mode: 'add' | 'edit' = 'add'
 			id: 'modal-field-title',
 			label: 'Название произведения',
 			errMessage: errors.title?.message ?? '',
+			value: getValues('title') || '',
 		},
 		author: {
 			id: 'modal-field-author',
 			label: 'Автор книги',
 			errMessage: errors.author?.message ?? '',
+			value: getValues('author') || '',
 		},
 		description: {
 			id: 'modal-field-description',
 			label: 'Описание книги',
 			errMessage: errors.description?.message ?? '',
+			value: getValues('description') || '',
 		},
 		cover: {
 			id: 'modal-field-cover',

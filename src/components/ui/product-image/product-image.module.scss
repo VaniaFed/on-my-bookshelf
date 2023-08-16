@@ -10,10 +10,20 @@
 	border: 1px solid $color-pic-border;
 	border-radius: 12px;
 
+	@include media-mobile {
+		position: static;
+	}
+
 	&_large {
 		width: 650px;
 		height: 650px;
 		padding: 60px;
 		border-radius: 36px;
+	}
+
+	&__img {
+		@include media-mobile {
+			object-fit: contain;
+		}
 	}
 }

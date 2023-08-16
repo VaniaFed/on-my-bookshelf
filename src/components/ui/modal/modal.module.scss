@@ -20,7 +20,7 @@
 
 	&::after {
 		content: '';
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		z-index: 0;
@@ -54,11 +54,15 @@
 	}
 
 	&__content {
+		overflow-y: auto;
+		max-height: 660px;
 		margin-top: 24px;
 		padding-bottom: 24px;
 	}
 
 	&__footer {
+		display: flex;
+		gap: 12px;
 		border-top: 1px solid $color-footer-border;
 		padding-top: 24px;
 	}

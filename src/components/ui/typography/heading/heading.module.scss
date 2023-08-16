@@ -5,6 +5,10 @@
 	font-size: 36px;
 	font-style: normal;
 	font-weight: 700;
+
+	@include media-mobile {
+		font-size: 30px;
+	}
 }
 
 .h1 {
@@ -15,6 +19,10 @@
 	font-size: 32px;
 	font-style: normal;
 	font-weight: 400;
+
+	@include media-mobile {
+		font-size: 24px;
+	}
 }
 
 .h2 {
