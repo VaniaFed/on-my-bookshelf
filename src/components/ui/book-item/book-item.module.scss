@@ -43,6 +43,11 @@
 		}
 	}
 
+	&__btn {
+		border: none;
+		cursor: pointer;
+	}
+
 	&:hover &__links {
 		display: flex;
 	}

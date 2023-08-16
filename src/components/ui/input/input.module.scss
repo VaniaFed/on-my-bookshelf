@@ -35,4 +35,10 @@
 			color: $color-red;
 		}
 	}
+
+	&_solid {
+		height: 60px;
+		border: none;
+		background-color: $color-input-background;
+	}
 }

@@ -40,6 +40,7 @@ module.exports = {
 		'@typescript-eslint/strict-boolean-expressions': 0,
 		'@typescript-eslint/no-var-requires': 0,
 		'@typescript-eslint/no-floating-promises': 0,
+		'@typescript-eslint/prefer-nullish-coalescing': 0,
 	},
 	plugins: ['react'],
 	settings: {

@@ -13,8 +13,13 @@ const cx = classNames.bind(styles);
 export const BooksList: FC<Props> = ({ books, className }) => {
 	return (
 		<div className={cx('books-list', className)}>
-			{books.map((book, key) => (
-				<BookItem title={book.title} author={book.author} src={book.cover} key={key}></BookItem>
+			{books.map((book) => (
+				<BookItem
+					id={book.id}
+					title={book.title}
+					author={book.author}
+					src={book.cover}
+					key={book.id}></BookItem>
 			))}
 		</div>
 	);

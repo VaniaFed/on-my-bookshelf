@@ -14,19 +14,26 @@ import { Modal } from '../modal';
 import type { FC } from 'react';
 import type { Props } from './props';
 
-export const ModalAdd: FC<Props> = ({ onClose, className }) => {
-	const { register, handleImageChange, resetForm, onFormSubmit, fieldsData } = useBookForm(onClose);
+export const ModalEdit: FC<Props> = ({ bookId, onClose, className }) => {
+	const { register, handleImageChange, resetForm, onFormSubmit, onRemoveBook, fieldsData } = useBookForm(
+		onClose,
+		'edit',
+		bookId
+	);
 
 	const header = (
 		<>
-			<Heading size="2">Добавить книгу</Heading>
+			<Heading size="2">Редактировать</Heading>
 		</>
 	);
 
 	const footer = (
 		<>
 			<Button variant="positive" form="add-book-form">
-				Добавить
+				Сохранить
+			</Button>
+			<Button variant="negative" onClick={onRemoveBook}>
+				Удалить
 			</Button>
 		</>
 	);
@@ -65,7 +72,7 @@ export const ModalAdd: FC<Props> = ({ onClose, className }) => {
 					<ImageLoader
 						id={fieldsData.cover.id}
 						onImageChange={handleImageChange}
-						value={fieldsData.cover.value as string}
+						image={fieldsData.cover.value as string}
 						{...register('cover')}
 					/>
 				</Field>

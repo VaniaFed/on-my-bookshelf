@@ -1,10 +1,9 @@
 import React, { useRef } from 'react';
 import classNames from 'classnames/bind';
 
+import { BoxContainer } from 'components/layouts/box-container';
 import { CloseBtn } from 'components/ui/close-btn';
 import { useClickOutside } from 'hooks/use-click-outside';
-
-import { BoxContainer } from '../box-container';
 
 import styles from './modal.module.scss';
 

@@ -1,12 +1,15 @@
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 import { useAppDispatch } from 'reduxx/hooks';
-import { addBook } from 'reduxx/slices/book/slice';
+import { addBook, removeBook, selectBookById, updateBook } from 'reduxx/slices/book/slice';
+import store from 'reduxx/store';
 import { generateId } from 'utils/generate-id';
 
 import type { SubmitHandler, UseFormRegister } from 'react-hook-form';
+import type { Book } from 'reduxx/slices/book/types';
 
 const bookSchema = yup
 	.object({
@@ -23,6 +26,7 @@ interface FieldsData {
 	id: string;
 	label: string;
 	errMessage: string;
+	value?: string;
 }
 
 interface UseBookForm {
@@ -30,6 +34,7 @@ interface UseBookForm {
 	resetForm: () => void;
 	handleImageChange: (imgURL: string) => void;
 	onFormSubmit: (e: React.FormEvent) => void;
+	onRemoveBook: () => void;
 	fieldsData: {
 		title: FieldsData;
 		author: FieldsData;
@@ -39,20 +44,25 @@ interface UseBookForm {
 }
 
 export function useBookForm(closeModal: () => void, mode: 'add' | 'edit' = 'add', bookId?: string): UseBookForm {
+	const [book, setBook] = useState<Book>();
+
+	const defaultValues = {
+		title: '',
+		author: '',
+		description: '',
+		cover: '',
+	};
+
 	const {
 		register,
 		handleSubmit,
 		setValue,
 		reset,
+		getValues,
 		formState: { errors },
 	} = useForm<BookFields>({
 		resolver: yupResolver<BookFields>(bookSchema),
-		defaultValues: {
-			title: '',
-			author: '',
-			description: '',
-			cover: '',
-		},
+		defaultValues,
 	});
 
 	const dispatch = useAppDispatch();
@@ -61,10 +71,28 @@ export function useBookForm(closeModal: () => void, mode: 'add' | 'edit' = 'add'
 		dispatch(addBook({ ...book, id: generateId() }));
 	};
 
+	const editBookOnSubmit = (book: BookFields): void => {
+		if (!bookId) {
+			return;
+		}
+
+		dispatch(updateBook({ id: bookId, changes: { ...book } }));
+	};
+
 	const onSubmit: SubmitHandler<BookFields> = (data): void => {
-		addBookOnSubmit(data);
+		if (mode === 'add') {
+			addBookOnSubmit(data);
+		} else {
+			editBookOnSubmit(data);
+		}
 		closeModal();
 		resetForm();
+	};
+
+	const onRemoveBook = (): void => {
+		if (!bookId) return;
+
+		dispatch(removeBook(bookId));
 	};
 
 	const handleImageChange = (imgURL: string): void => {
@@ -105,14 +133,33 @@ export function useBookForm(closeModal: () => void, mode: 'add' | 'edit' = 'add'
 			id: 'modal-field-cover',
 			label: 'Обложка',
 			errMessage: errors.cover?.message ?? '',
+			value: getValues('cover') || '',
 		},
 	};
+
+	useEffect(() => {
+		if (!bookId) {
+			return;
+		}
+		setBook(selectBookById(store.getState(), bookId));
+	}, []);
+
+	useEffect(() => {
+		if (!book) return;
+		reset({
+			title: book?.title,
+			author: book?.author,
+			description: book?.description,
+			cover: book?.cover,
+		});
+	}, [book]);
 
 	return {
 		register,
 		handleImageChange,
 		resetForm,
 		onFormSubmit,
+		onRemoveBook,
 		fieldsData,
 	};
 }

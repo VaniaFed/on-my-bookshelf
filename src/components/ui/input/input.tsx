@@ -7,8 +7,8 @@ import type { Props } from './props';
 
 const cx = classNames.bind(styles);
 
-export const Input = forwardRef<HTMLInputElement, Props>(({ isInvalid = false, className, ...rest }, ref) => {
-	return <input className={cx('input', isInvalid && 'input_invalid', className)} {...rest} ref={ref} />;
+export const Input = forwardRef<HTMLInputElement, Props>(({ solid = false, className, ...rest }, ref) => {
+	return <input className={cx('input', solid && 'input_solid', className)} {...rest} ref={ref} />;
 });
 
 Input.displayName = 'Input';

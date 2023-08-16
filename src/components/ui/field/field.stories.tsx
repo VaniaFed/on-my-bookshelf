@@ -65,6 +65,7 @@ FieldImageLoader.args = {
 	children: (
 		<ImageLoader
 			id="test"
+			value="typical value"
 			onImageChange={() => {
 				console.log('test log');
 			}}

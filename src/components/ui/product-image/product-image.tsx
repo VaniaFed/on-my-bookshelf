@@ -8,12 +8,12 @@ import type { Props } from './props';
 
 const cx = classNames.bind(styles);
 
-export const ProductImage: FC<Props> = ({ src = '', alt, dynamic = false, isLarge, className }) => {
-	const basePath = src.length > 0 ? src : 'book-placeholder.png';
-	const resultPath = dynamic ? require(`${process.env.STATIC_URL}/${basePath}`) : basePath;
+export const ProductImage: FC<Props> = ({ src, alt, dynamic = false, isLarge, className }) => {
+	const placeholderImage = require(`${process.env.STATIC_URL}/book-placeholder.png`);
+	const finalImage = src || placeholderImage;
 	return (
 		<div className={cx('product-image', isLarge && 'product-image_large', className)}>
-			<img src={resultPath} alt={alt} />
+			{finalImage && <img src={finalImage} alt={alt} />}
 		</div>
 	);
 };

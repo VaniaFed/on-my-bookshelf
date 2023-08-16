@@ -10,10 +10,12 @@ const booksSlice = createSlice({
 	initialState: booksAdapter.getInitialState(),
 	reducers: {
 		addBook: booksAdapter.addOne,
+		updateBook: booksAdapter.updateOne,
+		removeBook: booksAdapter.removeOne,
 	},
 });
 
-export const { addBook } = booksSlice.actions;
+export const { addBook, updateBook, removeBook } = booksSlice.actions;
 
 const { selectAll, selectById } = booksAdapter.getSelectors((state: RootState) => state.books);
 

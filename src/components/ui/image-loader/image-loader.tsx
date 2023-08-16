@@ -15,9 +15,9 @@ const cx = classNames.bind(styles);
 const imageMimeType = /image\/(png|jpg|jpeg)/i;
 
 export const ImageLoader = forwardRef<HTMLInputElement, Props>(
-	({ id, label = '', errMessage = '', className, onImageChange, ...rest }, ref) => {
+	({ id, label = '', errMessage = '', className, image = '', onImageChange, ...rest }, ref) => {
 		const [file, setFile] = useState<File>();
-		const [fileDataURL, setFileDataURL] = useState(null);
+		const [fileDataURL, setFileDataURL] = useState<string>(image);
 
 		const handleImageChange = (e: ChangeEvent<HTMLInputElement>): void => {
 			if (!e.target.files) return;
@@ -57,6 +57,14 @@ export const ImageLoader = forwardRef<HTMLInputElement, Props>(
 			};
 		}, [file]);
 
+		useEffect(() => {
+			if (!image) {
+				return;
+			}
+
+			setFileDataURL(image);
+		}, [image]);
+
 		return (
 			<label className={cx('image-loader', className)}>
 				{label?.length > 0 && (
@@ -69,11 +77,17 @@ export const ImageLoader = forwardRef<HTMLInputElement, Props>(
 					accept="image/*"
 					className={cx('image-loader__input')}
 					ref={ref}
+					// value={value}
 					{...rest}
 					onChange={handleImageChange}
 				/>
-				{file && fileDataURL && (
-					<ProductImage src={fileDataURL} alt={file.name} className={cx('image-loader__preview')} />
+				{fileDataURL && (
+					<ProductImage
+						src={fileDataURL}
+						dynamic={fileDataURL?.length === 0}
+						alt={file ? file.name : ''}
+						className={cx('image-loader__preview')}
+					/>
 				)}
 				<Paragraph>Нажмите, чтобы выбрать изображение</Paragraph>
 			</label>
