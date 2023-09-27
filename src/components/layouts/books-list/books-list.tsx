@@ -19,7 +19,9 @@ export const BooksList: FC<Props> = ({ books, className }) => {
 					title={book.title}
 					author={book.author}
 					src={book.cover}
-					key={book.id}></BookItem>
+					className={cx('books-list__item')}
+					key={book.id}
+				/>
 			))}
 		</div>
 	);

@@ -40,7 +40,6 @@ export const BookItem: FC<Props> = ({ id, title, author, src = '', alt, classNam
 					<button className={cx('book-item__btn')} onClick={showViewModal}>
 						<img src={require(`${process.env.STATIC_URL}/review.png`)} />
 					</button>
-					{/* // тут будет еще одна кнопка  */}
 				</div>
 			</div>
 			{isEditModalShown && <ModalEdit bookId={id} onClose={hideEditModal} />}

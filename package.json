@@ -6,13 +6,10 @@
 	"scripts": {
 		"start": "webpack-dev-server --config webpack.dev.config.js",
 		"build": "webpack --config webpack.prod.config.js",
-		"clear": "rd /s /q dist",
+		"json-server: start": "json-server -w db.json -p 3001",
 		"tsc:diagnostics": "tsc --project ./tsconfig.json --diagnostics --watch",
-		"tsc:extendedDiagnostics": "tsc --project ./tsconfig.json --diagnostics --extendedDiagnostics --listFiles",
 		"lint": "eslint .",
-		"lint:fix": "eslint . --fix",
 		"stylelint": "stylelint ./src",
-		"stylelint:fix": "stylelint ./src --fix",
 		"storybook": "start-storybook -p 6006",
 		"build-storybook": "build-storybook"
 	},

@@ -3,6 +3,7 @@
 
 .product-image {
 	display: flex;
+	overflow: hidden;
 	justify-content: center;
 	width: 315px;
 	height: 315px;
@@ -22,8 +23,6 @@
 	}
 
 	&__img {
-		@include media-mobile {
-			object-fit: contain;
-		}
+		object-fit: contain;
 	}
 }

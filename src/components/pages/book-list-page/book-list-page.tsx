@@ -9,9 +9,8 @@ import { Input } from 'components/ui/input';
 import { Button } from 'components/ui/button';
 import { Subtitle } from 'components/ui/typography/subtitle';
 import { Heading } from 'components/ui/typography/heading';
-import { useAppSelector } from 'reduxx/hooks';
 import { useModal } from 'hooks/use-modal';
-import { selectAllBooks } from 'reduxx/slices/book/slice';
+import { useGetBooksQuery } from 'reduxx/api';
 
 import styles from './book-list-page.module.scss';
 
@@ -29,15 +28,16 @@ export const BookListPage: FC<unknown> = () => {
 		setFilter('');
 	};
 
-	const books = useAppSelector(selectAllBooks).filter(
-		(book) => book.title.includes(filter) || book.author.includes(filter)
-	);
+	const { data: books } = useGetBooksQuery();
+
+	const filteredBooks =
+		books !== undefined ? books.filter((book) => book.title.includes(filter) || book.author.includes(filter)) : [];
 
 	useEffect(() => {
 		navigate(`?search=${filter}`);
 	}, [filter]);
 
-	const isFilterNotWork = !books.length && filter;
+	const emptyFilter = !filteredBooks.length && filter;
 
 	return (
 		<BoxContainer className={cx('book-list-page__content')}>
@@ -49,14 +49,14 @@ export const BookListPage: FC<unknown> = () => {
 				}}
 				placeholder="Найти книгу"
 			/>
-			<Heading size="1">Книжечки ({books.length})</Heading>
-			<BooksList books={books} />
-			{isFilterNotWork && <Subtitle light>Ничего не найдено.</Subtitle>}
+			<Heading size="1">Книжечки ({filteredBooks.length})</Heading>
+			<BooksList books={filteredBooks} />
+			{emptyFilter && <Subtitle light>Ничего не найдено.</Subtitle>}
 			<div className={cx('book-list-page__button-group')}>
 				<Button variant="positive" className={cx('book-list-page__button')} onClick={showModal}>
 					Добавить книгу
 				</Button>
-				{isFilterNotWork && (
+				{emptyFilter && (
 					<>
 						<Button variant="secondary" className={cx('book-list-page__button')} onClick={resetFilter}>
 							Сбросить поиск?

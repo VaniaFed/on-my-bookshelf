@@ -3,7 +3,6 @@
 
 .book-item {
 	display: flex;
-	align-items: stretch;
 
 	@include media-tablet {
 		flex-direction: column;
@@ -20,9 +19,14 @@
 
 		@include media-tablet {
 			justify-content: start;
-			align-items: start;
 			flex-direction: column;
+			text-align: center;
 			width: 100%;
+			padding: 30px;
+		}
+
+		@include media-mobile {
+			padding: 20;
 		}
 	}
 
@@ -31,6 +35,10 @@
 		text-overflow: ellipsis;
 		overflow: hidden;
 		max-width: 500px;
+
+		@include media-tablet {
+			padding-right: 0;
+		}
 	}
 
 	&__subtitle {
@@ -38,8 +46,6 @@
 	}
 
 	&__links {
-		position: relative;
-		top: -18px;
 		display: none;
 		gap: 24px;
 		padding-left: 12px;
@@ -47,12 +53,14 @@
 		@include media-tablet {
 			display: flex;
 			margin-top: 36px;
+			padding: 0;
 		}
 	}
 
 	&__btn {
 		border: none;
 		cursor: pointer;
+		background: none;
 	}
 
 	&:hover &__links {

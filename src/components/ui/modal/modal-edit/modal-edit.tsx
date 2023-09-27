@@ -15,7 +15,7 @@ import type { FC } from 'react';
 import type { Props } from './props';
 
 export const ModalEdit: FC<Props> = ({ bookId, onClose, className }) => {
-	const { register, handleImageChange, resetForm, onFormSubmit, onRemoveBook, fieldsData } = useBookForm(
+	const { register, handleImageChange, resetForm, onFormSubmit, onDeleteBook, fieldsData } = useBookForm(
 		onClose,
 		'edit',
 		bookId
@@ -32,7 +32,7 @@ export const ModalEdit: FC<Props> = ({ bookId, onClose, className }) => {
 			<Button variant="positive" form="add-book-form">
 				Сохранить
 			</Button>
-			<Button variant="negative" onClick={onRemoveBook}>
+			<Button variant="negative" onClick={onDeleteBook}>
 				Удалить
 			</Button>
 		</>

@@ -1,15 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import { useAppDispatch } from 'reduxx/hooks';
-import { addBook, removeBook, selectBookById, updateBook } from 'reduxx/slices/book/slice';
-import store from 'reduxx/store';
+import { useCreateBookMutation, useDeleteBookMutation, useEditBookMutation, useGetBookByIdQuery } from 'reduxx/api';
 import { generateId } from 'utils/generate-id';
 
 import type { SubmitHandler, UseFormRegister } from 'react-hook-form';
-import type { Book } from 'reduxx/slices/book/types';
 
 const bookSchema = yup
 	.object({
@@ -22,7 +19,7 @@ const bookSchema = yup
 
 interface BookFields extends yup.InferType<typeof bookSchema> {}
 
-interface FieldsData {
+interface Field {
 	id: string;
 	label: string;
 	errMessage: string;
@@ -34,17 +31,17 @@ interface UseBookForm {
 	resetForm: () => void;
 	handleImageChange: (imgURL: string) => void;
 	onFormSubmit: (e: React.FormEvent) => void;
-	onRemoveBook: () => void;
+	onDeleteBook: () => Promise<void>;
 	fieldsData: {
-		title: FieldsData;
-		author: FieldsData;
-		description: FieldsData;
-		cover: FieldsData;
+		title: Field;
+		author: Field;
+		description: Field;
+		cover: Field;
 	};
 }
 
 export function useBookForm(closeModal: () => void, mode: 'add' | 'edit' = 'add', bookId?: string): UseBookForm {
-	const [book, setBook] = useState<Book>();
+	const { data: book } = useGetBookByIdQuery(bookId || '');
 
 	const defaultValues = {
 		title: '',
@@ -65,34 +62,26 @@ export function useBookForm(closeModal: () => void, mode: 'add' | 'edit' = 'add'
 		defaultValues,
 	});
 
-	const dispatch = useAppDispatch();
+	const [createBook] = useCreateBookMutation();
+	const [editBook] = useEditBookMutation();
+	const [deleteBook] = useDeleteBookMutation();
 
-	const addBookOnSubmit = (book: BookFields): void => {
-		dispatch(addBook({ ...book, id: generateId() }));
+	const handleCreateBook = async (book: BookFields): Promise<void> => {
+		await createBook({ ...book, id: generateId() }).unwrap();
 	};
 
-	const editBookOnSubmit = (book: BookFields): void => {
+	const handleEditBook = async (book: BookFields): Promise<void> => {
 		if (!bookId) {
 			return;
 		}
 
-		dispatch(updateBook({ id: bookId, changes: { ...book } }));
+		await editBook({ id: bookId, ...book }).unwrap();
 	};
 
-	const onSubmit: SubmitHandler<BookFields> = (data): void => {
-		if (mode === 'add') {
-			addBookOnSubmit(data);
-		} else {
-			editBookOnSubmit(data);
-		}
-		closeModal();
-		resetForm();
-	};
-
-	const onRemoveBook = (): void => {
+	const handleDeleteBook = async (): Promise<void> => {
 		if (!bookId) return;
 
-		dispatch(removeBook(bookId));
+		await deleteBook(bookId).unwrap();
 	};
 
 	const handleImageChange = (imgURL: string): void => {
@@ -103,16 +92,26 @@ export function useBookForm(closeModal: () => void, mode: 'add' | 'edit' = 'add'
 		reset();
 	};
 
+	const onSubmit: SubmitHandler<BookFields> = (data): void => {
+		if (mode === 'add') {
+			handleCreateBook(data);
+		} else {
+			handleEditBook(data);
+		}
+		closeModal();
+		resetForm();
+	};
+
 	const onFormSubmit = (e: React.FormEvent): void => {
 		e.preventDefault();
 		handleSubmit(onSubmit)();
 	};
 
 	const fieldsData: {
-		title: FieldsData;
-		author: FieldsData;
-		description: FieldsData;
-		cover: FieldsData;
+		title: Field;
+		author: Field;
+		description: Field;
+		cover: Field;
 	} = {
 		title: {
 			id: 'modal-field-title',
@@ -141,14 +140,7 @@ export function useBookForm(closeModal: () => void, mode: 'add' | 'edit' = 'add'
 	};
 
 	useEffect(() => {
-		if (!bookId) {
-			return;
-		}
-		setBook(selectBookById(store.getState(), bookId));
-	}, []);
-
-	useEffect(() => {
-		if (!book) return;
+		if (!book || !bookId) return;
 		reset({
 			title: book?.title,
 			author: book?.author,
@@ -162,7 +154,7 @@ export function useBookForm(closeModal: () => void, mode: 'add' | 'edit' = 'add'
 		handleImageChange,
 		resetForm,
 		onFormSubmit,
-		onRemoveBook,
+		onDeleteBook: handleDeleteBook,
 		fieldsData,
 	};
 }
