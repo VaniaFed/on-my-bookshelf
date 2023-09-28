@@ -10,7 +10,7 @@
 		display: flex;
 		gap: 30px;
 
-		@include media-mobile {
+		@include media-large-tablet {
 			flex-direction: column;
 			gap: 18px;
 		}
@@ -20,7 +20,7 @@
 		position: sticky;
 		top: 0;
 
-		@include media-mobile {
+		@include media-large-tablet {
 			position: static;
 			width: 100%;
 		}
