@@ -44,6 +44,13 @@
 
 		@include media-tablet {
 			height: 100%;
+			overflow-y: auto;
+			align-items: center;
+		}
+
+		@include media-horizontal {
+			height: 100%;
+			overflow-y: auto;
 		}
 	}
 
@@ -52,6 +59,19 @@
 		position: relative;
 		padding: 40px;
 		background-color: $color-white;
+
+		@include media-horizontal {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+
+		@include media-tablet {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
 	}
 
 	&__content {

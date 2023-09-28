@@ -11,7 +11,7 @@ export function useModal(shownByDefault: boolean = false): UseModal {
 
 	const showModal = (): void => {
 		setIsModalShown(true);
-		document.body.setAttribute('style', 'position: fixed');
+		document.body.setAttribute('style', 'position: fixed; left: 50%; transform: translateX(-50%); width: 100%;');
 	};
 
 	const hideModal = (): void => {
