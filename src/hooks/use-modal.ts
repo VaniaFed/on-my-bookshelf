@@ -11,10 +11,12 @@ export function useModal(shownByDefault: boolean = false): UseModal {
 
 	const showModal = (): void => {
 		setIsModalShown(true);
+		document.body.setAttribute('style', 'position: fixed');
 	};
 
 	const hideModal = (): void => {
 		setIsModalShown(false);
+		document.body.setAttribute('style', '');
 	};
 
 	return {
