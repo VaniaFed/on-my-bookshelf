@@ -1,0 +1,15 @@
+@import 'utils/variables';
+@import 'utils/media';
+
+.field {
+	&__label {
+		display: inline-block;
+		margin-bottom: 8px;
+	}
+
+	&__error {
+		margin-top: 8px;
+		margin-left: 8px;
+		color: $color-red;
+	}
+}

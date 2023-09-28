@@ -1,0 +1,35 @@
+@import 'utils/variables';
+@import 'utils/media';
+
+.book-page {
+	max-width: 650px;
+
+	&__image {
+		margin-bottom: 48px;
+		max-width: 100%;
+
+		@include media-mobile {
+			width: 100%;
+			max-height: 300px;
+			margin-bottom: 24px;
+			padding: 30px;
+		}
+	}
+
+	&__title {
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+
+	&__author {
+		margin-top: 12px;
+	}
+
+	&__description {
+		margin-top: 24px;
+	}
+
+	&__home-link {
+		margin-top: 24px;
+	}
+}

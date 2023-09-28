@@ -1,83 +1,66 @@
-@import 'components/ui/paragraph/paragraph.module';
 @import 'utils/variables';
 @import 'utils/media';
+@import 'components/ui/typography/paragraph/paragraph.module';
 
 .button {
 	@include paragraph;
-	padding: 15px 72.5px;
-	background: $color-green-400;
-	color: $color-white;
+	font-weight: 600;
+	padding: 5px 20px;
+	background-color: $color-white;
+	color: $color-black;
 	border: none;
 	border-radius: 10px;
 	cursor: pointer;
+}
+
+.button_positive {
+	background-color: $color-green;
+	color: $color-white;
 
 	&:hover {
-		background: $color-green-300;
+		background-color: $color-green-hover;
 	}
 
 	&:active {
-		background: $color-green-200;
-	}
-
-	@include media-mobile {
-		padding: 12px 30px;
+		background-color: $color-green-active;
 	}
 }
 
-.button_more {
-	@include paragraph_size_big;
-	display: flex;
-	align-items: center;
-	column-gap: 15px;
-	padding: 7px 20px;
-	background: none;
-	border-radius: 50px;
+.button_attention {
+	background-color: $color-orange;
+	color: $color-white;
 
 	&:hover {
-		background: $color-green-400;
+		background-color: $color-orange-hover;
 	}
 
 	&:active {
-		background: $color-orange-200;
+		background-color: $color-orange-active;
+	}
+}
+
+.button_negative {
+	background-color: transparent;
+	color: $color-red;
+
+	&:hover {
+		color: $color-red-hover;
 	}
 
-	&::after {
-		content: '';
-		display: inline-flex;
-		align-items: center;
-		width: 24px;
-		height: 26px;
-		background: url('static/arrow bt.svg');
+	&:active {
+		color: $color-red-active;
 	}
 }
 
 .button_secondary {
-	background: $color-green-100;
-	color: $color-green-400;
+	background-color: $color-gray;
+	color: $color-white;
 
 	&:hover {
-		background: $color-gray-100;
+		background-color: $color-gray-hover;
 	}
 
 	&:active {
-		background: $color-gray-200;
-	}
-}
-
-.button_small {
-	@include paragraph_size_small;
-	padding: 5px 20px;
-	background-color: $color-white;
-	color: $color-black;
-	border-radius: 10px;
-
-	&:hover {
-		background: $color-blue-300;
-		color: $color-white;
-	}
-
-	&:active {
-		background: $color-blue-200;
-		color: $color-white;
+		background-color: $color-gray-active;
 	}
 }

@@ -1,0 +1,21 @@
+@import 'utils/variables';
+@import 'utils/media';
+
+.label {
+	position: relative;
+	font-size: 20px;
+	font-weight: 500;
+
+	@include media-mobile {
+		font-size: 16px;
+	}
+}
+
+.label_required {
+	&::after {
+		content: url('/src/static/required.svg');
+		position: absolute;
+		top: -12px;
+		right: -12px;
+	}
+}

@@ -1,0 +1,59 @@
+@import 'utils/variables';
+@import 'utils/media';
+
+.image-loader {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 160px;
+	text-align: center;
+	padding: 20px;
+	background-color: $color-file-loader-bg;
+	border-radius: 12px;
+	font-weight: 500;
+	cursor: pointer;
+
+	@include media-mobile {
+		flex-direction: column;
+		gap: 24px;
+		height: auto;
+	}
+
+	&__input {
+		opacity: 0;
+		visibility: hidden;
+		position: absolute;
+	}
+
+	&__preview {
+		position: absolute;
+		left: 20px;
+		width: 120px;
+		height: 120px;
+		padding: 12px;
+		background-color: white;
+
+		@include media-tablet {
+			position: static;
+			left: 0;
+			flex-shrink: 0;
+		}
+		@include media-mobile {
+			position: static;
+		}
+	}
+
+	&__label {
+		padding-left: 18px;
+
+		@include media-tablet {
+			text-align: left;
+		}
+
+		@include media-mobile {
+			text-align: center;
+		}
+	}
+}

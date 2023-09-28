@@ -11,7 +11,9 @@ const meta: Meta = {
 };
 
 export default meta;
+
 export const Default: ComponentStory<typeof Input> = (args: Props) => <Input {...args} />;
 Default.args = {
 	className: '',
+	placeholder: 'Enter value',
 };

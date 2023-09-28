@@ -16,17 +16,32 @@ const logging = (): void => {
 	console.log('Hello, warlord');
 };
 
-export const Primary: ComponentStory<typeof Button> = (args: Props) => (
+export const Default: ComponentStory<typeof Button> = (args: Props) => (
 	<Button onClick={logging} {...args}>
-		hi
+		Default button
 	</Button>
 );
+
+export const Positive: ComponentStory<typeof Button> = (args: Props) => (
+	<Button onClick={logging} variant="positive" {...args}>
+		Positive
+	</Button>
+);
+
+export const Attention: ComponentStory<typeof Button> = (args: Props) => (
+	<Button onClick={logging} variant="attention" {...args}>
+		Attention
+	</Button>
+);
+
+export const Negative: ComponentStory<typeof Button> = (args: Props) => (
+	<Button onClick={logging} variant="negative" {...args}>
+		Negative
+	</Button>
+);
+
 export const Secondary: ComponentStory<typeof Button> = (args: Props) => (
-	<Button onClick={logging} variant="secondary" {...args} />
-);
-export const More: ComponentStory<typeof Button> = (args: Props) => (
-	<Button onClick={logging} variant="more" {...args} />
-);
-export const Small: ComponentStory<typeof Button> = (args: Props) => (
-	<Button onClick={logging} variant="small" {...args} />
+	<Button onClick={logging} variant="secondary" {...args}>
+		Secondary
+	</Button>
 );
