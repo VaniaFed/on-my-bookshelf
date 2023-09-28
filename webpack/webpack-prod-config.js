@@ -1,10 +1,20 @@
 const path = require('path');
 
+const dotenv = require('dotenv');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
+
+const envPath = path.join(__dirname, '..', '.env');
+
+const fileEnv = dotenv.config({ path: envPath }).parsed;
+
+const envKeys = Object.keys(fileEnv).reduce((prev, next) => {
+	prev[`process.env.${next}`] = JSON.stringify(fileEnv[next]);
+	return prev;
+}, {});
 
 module.exports = {
 	target: 'browserslist',
@@ -66,6 +76,7 @@ module.exports = {
 		new webpack.ids.DeterministicChunkIdsPlugin({
 			maxLength: 5,
 		}),
+		new webpack.DefinePlugin(envKeys),
 	],
 	mode: 'production',
 	optimization: {
