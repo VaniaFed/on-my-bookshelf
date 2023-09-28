@@ -16,6 +16,7 @@ export const apiSlice = createApi({
 		}),
 		getBookById: builder.query<Book, string>({
 			query: (id: string) => `/books/${id}`,
+			providesTags: ['Books'],
 		}),
 		createBook: builder.mutation({
 			query: (book: Book) => ({
