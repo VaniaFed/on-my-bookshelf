@@ -1,5 +1,7 @@
 const path = require('path');
 
+const webpack = require('webpack');
+
 module.exports = {
 	stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
 	addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions'],
@@ -35,11 +37,17 @@ module.exports = {
 				'sass-loader',
 			],
 		});
+		config.plugins.push(
+			new webpack.DefinePlugin({
+				'process.env.STATIC_URL': JSON.stringify(path.resolve(__dirname, '..', 'src', 'static')),
+			})
+		);
 		config.resolve.alias = {
 			...config.resolve.alias,
 			components: path.resolve(__dirname, '../src/components/'),
 			ui: path.resolve(__dirname, '../src/components/ui/'),
-			services: path.resolve(__dirname, '../src/services/'),
+			hooks: path.resolve(__dirname, '../src/hooks/'),
+			reduxx: path.resolve(__dirname, '../src/reduxx/'),
 			utils: path.resolve(__dirname, '../src/utils/'),
 			static: path.resolve(__dirname, '../src/static/'),
 			types: path.resolve(__dirname, '../src/types/'),

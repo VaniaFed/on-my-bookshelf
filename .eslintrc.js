@@ -39,6 +39,10 @@ module.exports = {
 		],
 		'@typescript-eslint/strict-boolean-expressions': 0,
 		'@typescript-eslint/no-var-requires': 0,
+		'@typescript-eslint/no-floating-promises': 0,
+		'@typescript-eslint/prefer-nullish-coalescing': 0,
+		'@typescript-eslint/no-invalid-void-type': 0,
+		'@typescript-eslint/no-misused-promises': 0,
 	},
 	plugins: ['react'],
 	settings: {
@@ -47,8 +51,8 @@ module.exports = {
 				map: [
 					['components', './src/components'],
 					['ui', './src/components/ui'],
-					['features', './src/features'],
-					['services', './src/services'],
+					['hooks', './src/hooks'],
+					['reduxx', './src/reduxx'],
 					['utils', './src/utils'],
 					['static', './src/static'],
 					['types', './src/types'],

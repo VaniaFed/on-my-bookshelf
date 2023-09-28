@@ -2,6 +2,9 @@
 @import 'utils/media';
 
 .header {
+	display: flex;
+	height: 88px;
+	background: $color-white;
 	border-bottom: 1px solid $color-header-border;
 }
 

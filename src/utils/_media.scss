@@ -28,8 +28,13 @@
 	}
 }
 
-// CERTAIN DEVICE ONLY
+@mixin media-horizontal {
+	@media (max-height: 860px) {
+		@content;
+	}
+}
 
+// CERTAIN DEVICE ONLY
 @mixin media-laptop-only {
 	@media (min-width: 680px) and (max-width: 1024px) {
 		@content;

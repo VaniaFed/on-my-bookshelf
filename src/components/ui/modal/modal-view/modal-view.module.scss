@@ -1,0 +1,33 @@
+@import 'utils/variables';
+@import 'utils/media';
+
+.modal-view {
+	&__subtitle {
+		margin-top: 12px;
+	}
+
+	&__content {
+		display: flex;
+		gap: 30px;
+
+		@include media-large-tablet {
+			flex-direction: column;
+			gap: 18px;
+		}
+	}
+
+	&__cover {
+		position: sticky;
+		top: 0;
+
+		@include media-large-tablet {
+			position: static;
+			width: 100%;
+		}
+	}
+
+	&__description {
+		flex: 1;
+		margin-top: 6px;
+	}
+}

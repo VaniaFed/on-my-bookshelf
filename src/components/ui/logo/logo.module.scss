@@ -6,4 +6,11 @@
 	font-weight: 900;
 	color: $color-black;
 	text-transform: uppercase;
+
+	&:hover {
+		color: $color-green-hover;
+	}
+	&:active {
+		color: $color-green-active;
+	}
 }

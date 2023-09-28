@@ -1,0 +1,29 @@
+@import 'utils/variables';
+@import 'utils/media';
+
+.books-list {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+
+	&__item {
+		position: relative;
+	}
+
+	&__item::after {
+		@include media-tablet {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			display: block;
+
+			height: 1px;
+			width: 100%;
+			background: $color-divider;
+		}
+	}
+
+	&__item:last-child::after {
+		content: none;
+	}
+}

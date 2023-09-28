@@ -11,18 +11,23 @@
 	&__header {
 		display: flex;
 		flex-shrink: 0;
-		height: 88px;
-		z-index: 10;
-		background: $color-white;
 	}
 
 	&__main {
 		flex: 1 0 auto;
 		margin-top: 60px;
+
+		@include media-mobile {
+			margin-top: 40px;
+		}
 	}
 
 	&__footer {
 		flex: 0 0 auto;
 		margin-top: 60px;
+
+		@include media-mobile {
+			margin-top: 40px;
+		}
 	}
 }

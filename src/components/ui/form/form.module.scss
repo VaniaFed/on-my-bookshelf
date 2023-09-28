@@ -1,0 +1,8 @@
+@import 'utils/variables';
+@import 'utils/media';
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}

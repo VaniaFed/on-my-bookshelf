@@ -4,7 +4,12 @@
 @mixin paragraph {
 	font-size: 16px;
 	line-height: 150%;
+
+	@include media-mobile {
+		font-size: 14px;
+	}
 }
+
 .paragraph {
 	@include paragraph;
 }

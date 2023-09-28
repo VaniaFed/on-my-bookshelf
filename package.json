@@ -6,13 +6,10 @@
 	"scripts": {
 		"start": "webpack-dev-server --config webpack.dev.config.js",
 		"build": "webpack --config webpack.prod.config.js",
-		"clear": "rd /s /q dist",
+		"json-server: start": "json-server -w db.json -p 3001",
 		"tsc:diagnostics": "tsc --project ./tsconfig.json --diagnostics --watch",
-		"tsc:extendedDiagnostics": "tsc --project ./tsconfig.json --diagnostics --extendedDiagnostics --listFiles",
 		"lint": "eslint .",
-		"lint:fix": "eslint . --fix",
 		"stylelint": "stylelint ./src",
-		"stylelint:fix": "stylelint ./src --fix",
 		"storybook": "start-storybook -p 6006",
 		"build-storybook": "build-storybook"
 	},
@@ -105,6 +102,7 @@
 	},
 	"dependencies": {
 		"@babel/polyfill": "^7.12.1",
+		"@hookform/resolvers": "^3.2.0",
 		"@reduxjs/toolkit": "^1.9.3",
 		"@types/react-redux": "^7.1.25",
 		"@types/uuid": "^9.0.1",
@@ -112,11 +110,13 @@
 		"classnames": "^2.3.2",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
+		"react-hook-form": "^7.45.4",
 		"react-redux": "^8.0.5",
 		"react-router-dom": "^6.11.1",
 		"redux": "^4.2.1",
 		"reset-css": "^5.0.1",
 		"stylelint": "^15.2.0",
-		"uuid": "^9.0.0"
+		"uuid": "^9.0.0",
+		"yup": "^1.2.0"
 	}
 }

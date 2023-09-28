@@ -1,5 +1,5 @@
 export interface Props {
-	size?: '1' | '2' | '3';
+	size?: '1' | '2';
 	children?: React.ReactNode;
 	className?: string;
 }
