@@ -11,6 +11,7 @@ import { Subtitle } from 'components/ui/typography/subtitle';
 import { Heading } from 'components/ui/typography/heading';
 import { useModal } from 'hooks/use-modal';
 import { useGetBooksQuery } from 'reduxx/api';
+import { filterBooks } from 'utils/filter-books';
 
 import styles from './book-list-page.module.scss';
 
@@ -30,8 +31,7 @@ export const BookListPage: FC<unknown> = () => {
 
 	const { data: books } = useGetBooksQuery();
 
-	const filteredBooks =
-		books !== undefined ? books.filter((book) => book.title.includes(filter) || book.author.includes(filter)) : [];
+	const filteredBooks = filterBooks(books || [], filter);
 
 	useEffect(() => {
 		navigate(`?search=${filter}`);
