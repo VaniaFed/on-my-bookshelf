@@ -16,7 +16,7 @@
 
 	@include media-mobile {
 		height: 48px;
-		padding: 10px;
+		padding: 10px 16px;
 	}
 
 	&:focus {
@@ -40,5 +40,9 @@
 		height: 60px;
 		border: none;
 		background-color: $color-input-background;
+
+		@include media-mobile {
+			height: 48px;
+		}
 	}
 }

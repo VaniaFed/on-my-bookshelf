@@ -18,7 +18,7 @@
 	@include media-mobile {
 		flex-direction: column;
 		gap: 24px;
-		height: 300px;
+		height: auto;
 	}
 
 	&__input {
@@ -35,8 +35,25 @@
 		padding: 12px;
 		background-color: white;
 
+		@include media-tablet {
+			position: static;
+			left: 0;
+			flex-shrink: 0;
+		}
 		@include media-mobile {
 			position: static;
+		}
+	}
+
+	&__label {
+		padding-left: 18px;
+
+		@include media-tablet {
+			text-align: left;
+		}
+
+		@include media-mobile {
+			text-align: center;
 		}
 	}
 }

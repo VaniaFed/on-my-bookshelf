@@ -39,7 +39,7 @@ export const ImageLoader = forwardRef<HTMLInputElement, Props>(
 						className={cx('image-loader__preview')}
 					/>
 				)}
-				<Paragraph>Нажмите, чтобы выбрать изображение</Paragraph>
+				<Paragraph className={cx('image-loader__label')}>Нажмите, чтобы выбрать изображение</Paragraph>
 			</label>
 		);
 	}

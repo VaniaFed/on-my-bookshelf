@@ -19,4 +19,8 @@
 	&:focus {
 		outline: none;
 	}
+
+	@include media-mobile {
+		padding: 10px;
+	}
 }
