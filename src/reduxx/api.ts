@@ -13,11 +13,13 @@ export const apiSlice = createApi({
 		getBooks: builder.query<Book[], void>({
 			query: () => '/books/',
 			providesTags: (result) =>
-				result ? [...result.map(({ id }) => ({ type: 'Books' as const, id })), 'Books'] : ['Books'],
+				result
+					? [...result.map(({ id }) => ({ type: 'Books' as const, id })), { type: 'Books', id: 'list' }]
+					: [{ type: 'Books', id: 'list' }],
 		}),
 		getBookById: builder.query<Book, string>({
 			query: (id: string) => `/books/${id}`,
-			providesTags: ['Books'],
+			providesTags: (res, err, arg) => [{ type: 'Books', id: arg }],
 		}),
 		createBook: builder.mutation({
 			query: (book: Book) => ({
@@ -25,7 +27,7 @@ export const apiSlice = createApi({
 				method: 'POST',
 				body: book,
 			}),
-			invalidatesTags: ['Books'],
+			invalidatesTags: [{ type: 'Books', id: 'list' }],
 		}),
 		editBook: builder.mutation({
 			query: (book: Book) => ({
@@ -33,14 +35,17 @@ export const apiSlice = createApi({
 				method: 'PATCH',
 				body: book,
 			}),
-			invalidatesTags: ['Books'],
+			invalidatesTags: (res, err, arg) => [
+				{ type: 'Books', id: arg.id },
+				{ type: 'Books', id: 'list' },
+			],
 		}),
 		deleteBook: builder.mutation<{ success: boolean; id: string }, string>({
 			query: (id) => ({
 				url: `/books/${id}`,
 				method: 'DELETE',
 			}),
-			invalidatesTags: ['Books'],
+			invalidatesTags: [{ type: 'Books', id: 'list' }],
 		}),
 	}),
 });
