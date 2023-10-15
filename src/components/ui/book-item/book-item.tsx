@@ -3,12 +3,11 @@ import classNames from 'classnames/bind';
 
 import { ModalEdit } from 'components/ui/modal/modal-edit/modal-edit';
 import { ModalView } from 'components/ui/modal/modal-view/modal-view';
+import { ProductImage } from 'components/ui/product-image/product-image';
+import { Heading } from 'components/ui/typography/heading';
+import { Subtitle } from 'components/ui/typography/subtitle';
+import { Link } from 'components/ui/link';
 import { useModal } from 'hooks/use-modal';
-
-import { ProductImage } from '../product-image/product-image';
-import { Heading } from '../typography/heading';
-import { Subtitle } from '../typography/subtitle';
-import { Link } from '../link';
 
 import styles from './book-item.module.scss';
 

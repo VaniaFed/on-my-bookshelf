@@ -4,10 +4,10 @@ import classNames from 'classnames/bind';
 import { Modal } from 'components/ui/modal/modal';
 import { Heading } from 'components/ui/typography/heading';
 import { Button } from 'components/ui/button';
-import { useBookForm } from 'hooks/use-book-form';
 import { Subtitle } from 'components/ui/typography/subtitle';
 import { ProductImage } from 'components/ui/product-image/product-image';
 import { Paragraph } from 'components/ui/typography/paragraph';
+import { useBookForm } from 'hooks/use-book-form';
 
 import styles from './modal-view.module.scss';
 

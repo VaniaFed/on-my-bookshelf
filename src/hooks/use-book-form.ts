@@ -82,6 +82,9 @@ export function useBookForm(closeModal: () => void, mode: 'add' | 'edit' = 'add'
 		if (!bookId) return;
 
 		await deleteBook(bookId).unwrap();
+
+		closeModal();
+		resetForm();
 	};
 
 	const handleImageChange = (imgURL: string): void => {

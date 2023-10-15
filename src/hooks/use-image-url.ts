@@ -33,7 +33,6 @@ export function useImageUrl(onImageChange: (imageUrl: string) => void, defaultIm
 		let fileReader: FileReader;
 		let isCancel = false;
 
-		// TODO: в хук
 		if (image) {
 			fileReader = new FileReader();
 			fileReader.onload = (e: ProgressEvent<FileReader>) => {
