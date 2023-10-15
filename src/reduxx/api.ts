@@ -2,7 +2,10 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import type { Book } from 'types';
 
-// const LOCAL_API = 'http://localhost:3001';
+// comment out to use local placeholder server
+// const API = 'http://localhost:3001';
+
+// comment to use local placeholder server
 const API = 'https://on-my-bookshelf-server.vercel.app/';
 
 export const apiSlice = createApi({
