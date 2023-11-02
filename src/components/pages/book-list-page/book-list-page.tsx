@@ -11,6 +11,7 @@ import { Subtitle } from 'components/ui/typography/subtitle';
 import { Heading } from 'components/ui/typography/heading';
 import { useModal } from 'hooks/use-modal';
 import { useGetBooksQuery } from 'reduxx/api';
+import { getBooksFromLocalStorage } from 'utils/get-books-from-local-storage';
 import { filterBooks } from 'utils/filter-books';
 
 import styles from './book-list-page.module.scss';
@@ -29,9 +30,9 @@ export const BookListPage: FC<unknown> = () => {
 		setFilter('');
 	};
 
-	const { data: books } = useGetBooksQuery();
-
-	const filteredBooks = filterBooks(books || [], filter);
+	const { data: books, isLoading } = useGetBooksQuery();
+	const booksFromLocalStorage = getBooksFromLocalStorage();
+	const filteredBooks = filterBooks(isLoading ? booksFromLocalStorage : books || [], filter);
 
 	useEffect(() => {
 		navigate(`?search=${filter}`);

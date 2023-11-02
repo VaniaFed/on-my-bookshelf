@@ -4,9 +4,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 import { useCreateBookMutation, useDeleteBookMutation, useEditBookMutation, useGetBookByIdQuery } from 'reduxx/api';
+import { getBooksFromLocalStorage } from 'utils/get-books-from-local-storage';
 import { generateId } from 'utils/generate-id';
 
 import type { SubmitHandler, UseFormRegister } from 'react-hook-form';
+import type { Book } from 'types';
 
 const bookSchema = yup
 	.object({
@@ -43,7 +45,9 @@ interface UseBookForm {
 export function useBookForm(closeModal: () => void, mode: 'add' | 'edit' = 'add', bookId?: string): UseBookForm {
 	const { data: book } = useGetBookByIdQuery(bookId || '');
 
-	const defaultValues = {
+	const bookFromLocalStorage = getBooksFromLocalStorage().find((book: Book) => book.id === bookId);
+
+	const defaultValues = bookFromLocalStorage || {
 		title: '',
 		author: '',
 		description: '',

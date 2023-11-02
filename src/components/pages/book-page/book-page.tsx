@@ -9,18 +9,21 @@ import { Paragraph } from 'components/ui/typography/paragraph';
 import { BoxContainer } from 'components/layouts/box-container';
 import { Link } from 'components/ui/link';
 import { useGetBookByIdQuery } from 'reduxx/api';
+import { getBooksFromLocalStorage } from 'utils/get-books-from-local-storage';
 
 import styles from './book-page.module.scss';
 
 import type { FC } from 'react';
+import type { Book } from 'types';
 import type { Props } from './props';
 
 const cx = classNames.bind(styles);
 
 export const BookPage: FC<Props> = ({ className }) => {
 	const { bookId = '' } = useParams();
-	const { data: book } = useGetBookByIdQuery(bookId);
-
+	const { data: bookFromQuery, isLoading } = useGetBookByIdQuery(bookId);
+	const bookFromLocalStorage = getBooksFromLocalStorage().find((book: Book) => book.id === bookId);
+	const book = isLoading ? bookFromLocalStorage : bookFromQuery;
 	return (
 		<BoxContainer className={cx('book-page', className)}>
 			{book !== undefined ? (
