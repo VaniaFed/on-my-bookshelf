@@ -6,7 +6,7 @@ import type { Book } from 'reduxx/slices/book/types';
 // const API = 'http://localhost:3001';
 
 // comment to use local placeholder server
-const API = 'https://on-my-bookshelf-server.vercel.app/';
+const API = 'https://on-my-bookshelf-server.vercel.app';
 
 export const bookAPI = {
 	async fetchById(id: string) {
