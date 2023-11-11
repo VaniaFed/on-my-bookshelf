@@ -46,12 +46,15 @@ interface UseBookForm {
 export function useBookForm(closeModal: () => void, mode: 'add' | 'edit' = 'add', bookId?: string): UseBookForm {
 	const book = useSelector(selectCurrentBook);
 
-	const defaultValues = book || {
-		title: '',
-		author: '',
-		description: '',
-		cover: '',
-	};
+	const defaultValues =
+		bookId && book
+			? book
+			: {
+					title: '',
+					author: '',
+					description: '',
+					cover: '',
+			  };
 
 	const {
 		register,
