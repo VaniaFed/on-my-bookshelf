@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import classNames from 'classnames/bind';
 
@@ -10,7 +11,9 @@ import { Button } from 'components/ui/button';
 import { Subtitle } from 'components/ui/typography/subtitle';
 import { Heading } from 'components/ui/typography/heading';
 import { useModal } from 'hooks/use-modal';
-import { useGetBooksQuery } from 'reduxx/api';
+import { fetchAllBooks } from 'reduxx/slices/book/asyncActions';
+import { useAppDispatch } from 'reduxx/hooks';
+import { selectAllBooks } from 'reduxx/slices/book/selectors';
 import { filterBooks } from 'utils/filter-books';
 
 import styles from './book-list-page.module.scss';
@@ -22,6 +25,9 @@ const cx = classNames.bind(styles);
 export const BookListPage: FC<unknown> = () => {
 	const navigate = useNavigate();
 	const { isModalShown, showModal, hideModal } = useModal();
+
+	const books = useSelector(selectAllBooks);
+
 	const defaultFilter = useSearchParams()[0].get('search');
 	const [filter, setFilter] = useState<string>(defaultFilter || '');
 
@@ -29,13 +35,17 @@ export const BookListPage: FC<unknown> = () => {
 		setFilter('');
 	};
 
-	const { data: books } = useGetBooksQuery();
-
-	const filteredBooks = filterBooks(books || [], filter);
+	const filteredBooks = filterBooks(books, filter);
 
 	useEffect(() => {
 		navigate(`?search=${filter}`);
 	}, [filter]);
+
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		dispatch(fetchAllBooks());
+	}, []);
 
 	const emptyFilter = !filteredBooks.length && filter;
 
