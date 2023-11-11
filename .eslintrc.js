@@ -53,6 +53,7 @@ module.exports = {
 					['ui', './src/components/ui'],
 					['hooks', './src/hooks'],
 					['reduxx', './src/reduxx'],
+					['api', './src/api'],
 					['utils', './src/utils'],
 					['static', './src/static'],
 					['types', './src/types'],
