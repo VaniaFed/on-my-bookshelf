@@ -3,10 +3,10 @@ import axios from 'axios';
 import type { Book } from 'reduxx/slices/book/types';
 
 // comment out to use local placeholder server
-const API = 'http://localhost:3001';
+// const API = 'http://localhost:3001';
 
 // comment to use local placeholder server
-// const API = 'https://on-my-bookshelf-server.vercel.app/';
+const API = 'https://on-my-bookshelf-server.vercel.app/';
 
 export const bookAPI = {
 	async fetchById(id: string) {
