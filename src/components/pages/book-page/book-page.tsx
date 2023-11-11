@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import classNames from 'classnames/bind';
 
@@ -8,7 +8,9 @@ import { Subtitle } from 'components/ui/typography/subtitle';
 import { Paragraph } from 'components/ui/typography/paragraph';
 import { BoxContainer } from 'components/layouts/box-container';
 import { Link } from 'components/ui/link';
-import { useGetBookByIdQuery } from 'reduxx/api';
+import { useAppDispatch, useAppSelector } from 'reduxx/hooks';
+import { selectCurrentBook } from 'reduxx/slices/book/selectors';
+import { fetchBookById } from 'reduxx/slices/book/asyncActions';
 
 import styles from './book-page.module.scss';
 
@@ -19,7 +21,13 @@ const cx = classNames.bind(styles);
 
 export const BookPage: FC<Props> = ({ className }) => {
 	const { bookId = '' } = useParams();
-	const { data: book } = useGetBookByIdQuery(bookId);
+	const book = useAppSelector(selectCurrentBook);
+
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		dispatch(fetchBookById(bookId));
+	}, []);
 
 	return (
 		<BoxContainer className={cx('book-page', className)}>

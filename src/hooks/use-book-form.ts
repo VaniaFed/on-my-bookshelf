@@ -1,12 +1,15 @@
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import { useCreateBookMutation, useDeleteBookMutation, useEditBookMutation, useGetBookByIdQuery } from 'reduxx/api';
-import { generateId } from 'utils/generate-id';
+import { useAppDispatch } from 'reduxx/hooks';
+import { createNewBook, deleteBook, fetchBookById, updateBook } from 'reduxx/slices/book/asyncActions';
+import { selectCurrentBook } from 'reduxx/slices/book/selectors';
 
 import type { SubmitHandler, UseFormRegister } from 'react-hook-form';
+import type { Book } from 'reduxx/slices/book/types';
 
 const bookSchema = yup
 	.object({
@@ -31,7 +34,7 @@ interface UseBookForm {
 	resetForm: () => void;
 	handleImageChange: (imgURL: string) => void;
 	onFormSubmit: (e: React.FormEvent) => void;
-	onDeleteBook: () => Promise<void>;
+	onDeleteBook: () => void;
 	fieldsData: {
 		title: Field;
 		author: Field;
@@ -41,9 +44,9 @@ interface UseBookForm {
 }
 
 export function useBookForm(closeModal: () => void, mode: 'add' | 'edit' = 'add', bookId?: string): UseBookForm {
-	const { data: book } = useGetBookByIdQuery(bookId || '');
+	const book = useSelector(selectCurrentBook);
 
-	const defaultValues = {
+	const defaultValues = book || {
 		title: '',
 		author: '',
 		description: '',
@@ -62,26 +65,23 @@ export function useBookForm(closeModal: () => void, mode: 'add' | 'edit' = 'add'
 		defaultValues,
 	});
 
-	const [createBook] = useCreateBookMutation();
-	const [editBook] = useEditBookMutation();
-	const [deleteBook] = useDeleteBookMutation();
+	const dispatch = useAppDispatch();
 
-	const handleCreateBook = async (book: BookFields): Promise<void> => {
-		await createBook({ ...book, id: generateId() }).unwrap();
+	const handleCreateBook = (book: BookFields): void => {
+		dispatch(createNewBook(book as Book));
 	};
 
-	const handleEditBook = async (book: BookFields): Promise<void> => {
+	const handleUpdateBook = (book: BookFields): void => {
 		if (!bookId) {
 			return;
 		}
-
-		await editBook({ id: bookId, ...book }).unwrap();
+		dispatch(updateBook({ id: bookId, ...book }));
 	};
 
-	const handleDeleteBook = async (): Promise<void> => {
+	const handleDeleteBook = (): void => {
 		if (!bookId) return;
 
-		await deleteBook(bookId).unwrap();
+		dispatch(deleteBook(bookId));
 
 		closeModal();
 		resetForm();
@@ -99,7 +99,7 @@ export function useBookForm(closeModal: () => void, mode: 'add' | 'edit' = 'add'
 		if (mode === 'add') {
 			handleCreateBook(data);
 		} else {
-			handleEditBook(data);
+			handleUpdateBook(data);
 		}
 		closeModal();
 		resetForm();
@@ -143,7 +143,14 @@ export function useBookForm(closeModal: () => void, mode: 'add' | 'edit' = 'add'
 	};
 
 	useEffect(() => {
+		if (bookId) {
+			dispatch(fetchBookById(bookId));
+		}
+	}, [bookId]);
+
+	useEffect(() => {
 		if (!book || !bookId) return;
+
 		reset({
 			title: book?.title,
 			author: book?.author,

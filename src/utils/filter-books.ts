@@ -1,4 +1,4 @@
-import type { Book } from 'types';
+import type { Book } from 'reduxx/slices/book/types';
 
 export const filterBooks = (books: Book[], filter: string): Book[] => {
 	if (!books) return [];
